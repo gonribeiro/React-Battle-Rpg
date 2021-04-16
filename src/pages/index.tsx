@@ -7,6 +7,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Monster from "../components/monster";
 
+import monsterStorage from "../../storage/Monster";
+
 interface Monster {
     name: string;
     attack: number;
@@ -23,30 +25,31 @@ export default function Home() {
     const [turn, setTurn] = useState(true);
     const [battleSituation, setBattleSituation] = useState(String);
     const [battleStatus, setBattleStatus] = useState(String);
+    const [opponentMonsterNumber, setOpponentMonsterNumber] = useState(0);
     const [winner, setWinner] = useState(String);
-
+    
     const [yourMonster] = useState<Monster>({
-        name: 'Squirtle', 
+        name: monsterStorage['5']['name'], 
         attack: 3, 
         attackChance: 0, 
         defense: 3, 
         defenseChance: 0, 
         life: 6, 
-        monsterImg: 'img/squirtle.jpg',
+        monsterImg: monsterStorage['5']['monsterImg'],
         remedy: 2,
         maximumPower: 2
     });
     const [opponentMonster] = useState<Monster>({
-        name: 'Mega Charizard', 
+        name: monsterStorage[opponentMonsterNumber]['name'], 
         attack: 3, 
         attackChance: 0, 
         defense: 3, 
         defenseChance: 0, 
-        life: 18, 
-        monsterImg: 'img/mega-charizard.jpg'
+        life: 1, 
+        monsterImg: monsterStorage[opponentMonsterNumber]['monsterImg']
     });
 
-    function randomChance() {
+    function randomLuck() {
         return Math.floor(Math.random() * 6) + 1;
     };
 
@@ -59,8 +62,8 @@ export default function Home() {
             var defender = yourMonster;
         }
 
-        attacker.attackChance = randomChance();
-        defender.defenseChance = randomChance();
+        attacker.attackChance = randomLuck();
+        defender.defenseChance = randomLuck();
 
         let result = (attacker.attack + attacker.attackChance) - (defender.defense + defender.defenseChance);
 
@@ -76,11 +79,49 @@ export default function Home() {
             defender.name + ' usou ' + (defender.defense + defender.defenseChance) + ' de defesa!'
         )
 
-        if (defender.life <= 0) {
-            setWinner(attacker.name + ' venceu!');
-        }
+        checkBattleSituation(attacker.name);
+    }
 
-        setTurn(!turn);
+    /** @todo Melhorar essa zona */
+    function checkBattleSituation(attackerName: string) {
+        if (yourMonster.life <= 0 && opponentMonsterNumber !== 4) { // Derrota antes da última luta, final ruim
+            setWinner(attackerName + ' venceu! Fim de jogo. Final ruim.');
+        }else if(opponentMonster.life <= 0 && opponentMonsterNumber <= 4){ // Vitória, próxima luta
+            setWinner(attackerName + ' venceu!');
+            setOpponentMonsterNumber(opponentMonsterNumber+1);
+            setTurn(true);
+
+            opponentMonster.name = monsterStorage[opponentMonsterNumber+1]['name'];
+            opponentMonster.monsterImg = monsterStorage[opponentMonsterNumber+1]['monsterImg'];
+
+            opponentMonster.life = 1; 
+            yourMonster.life = 6;
+            yourMonster.attack = 3;
+
+            if (opponentMonsterNumber === 3) { // Vitória, luta final
+                opponentMonster.life = 16; 
+            }
+        }else if(yourMonster.life <= 0){ // Derrota na última luta 
+            setWinner(attackerName + ' venceu!');
+
+            if (yourMonster.name === monsterStorage['5']['name']) { // última chance na luta final
+                yourMonster.name = monsterStorage['6']['name'];
+                yourMonster.monsterImg = monsterStorage['6']['monsterImg'];
+                yourMonster.attack = 6;
+                yourMonster.life = 12;
+            } else { // Derrota, final ruim
+                setWinner(attackerName + ' venceu! Fim de jogo. Final ruim.');
+            }
+            
+        }else if(opponentMonster.life <= 0 && opponentMonsterNumber === 4){ // Vitória final, fim de jogo
+            if (yourMonster.name === monsterStorage['6']['name']) { // Final bom
+                setWinner('Parabéns! Final bom!');
+            } else {
+                setWinner('Parabéns! Final Secreto!'); // Final secreto
+            }
+        }else{
+            setTurn(!turn); // Próximo turno da tabalha
+        }
     }
 
     function useItem(item: string) {
@@ -109,7 +150,7 @@ export default function Home() {
                         monster={yourMonster}
                         commandFighter={true}
                         turn={turn}
-                        winner={winner}
+                        opponentMonsterLife={opponentMonster.life}
                         fight={fighting}
                         useItem={useItem}
                     />

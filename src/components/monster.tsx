@@ -32,7 +32,7 @@ interface MonsterProps {
     turn?: boolean;
     fight?: any;
     useItem?: any;
-    winner?: string;
+    opponentMonsterLife?: number;
 }
 
 const Monster: React.FC<MonsterProps> = (props) => {
@@ -58,7 +58,7 @@ const Monster: React.FC<MonsterProps> = (props) => {
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            { props.commandFighter && props.winner === '' ? (
+            { props.commandFighter && props.opponentMonsterLife !== 0 && props.monster.life !== 0 ? (
                 <CardActions>
                     <div>
                         <Button 
