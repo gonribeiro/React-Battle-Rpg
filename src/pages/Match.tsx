@@ -1,13 +1,12 @@
-import { useState } from "react";
+import { useState, Fragment } from "react";
 
-import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import Monster from "../components/monster";
+import { Grid, Card, CardActionArea, CardContent, Typography } from '@material-ui/core';
 
-import monsterStorage from "../../storage/Monster";
+import Fighter from "../components/Fighter";
+
+import FabIcon from '../utils/Fab';
+
+import monsterStorage from "../storage/Monster";
 
 interface Monster {
     name: string;
@@ -21,7 +20,8 @@ interface Monster {
     maximumPower?: number;
 }
 
-export default function Home() {
+export default function Match() {
+    const innerHeight = window.innerHeight - 40;
     const [turn, setTurn] = useState(true);
     const [battleSituation, setBattleSituation] = useState(String);
     const [battleStatus, setBattleStatus] = useState(String);
@@ -29,13 +29,13 @@ export default function Home() {
     const [winner, setWinner] = useState(String);
     
     const [yourMonster] = useState<Monster>({
-        name: monsterStorage['5']['name'], 
+        name: monsterStorage[5]['name'], 
         attack: 3, 
         attackChance: 0, 
         defense: 3, 
         defenseChance: 0, 
         life: 6, 
-        monsterImg: monsterStorage['5']['monsterImg'],
+        monsterImg: monsterStorage[5]['monsterImg'],
         remedy: 2,
         maximumPower: 2
     });
@@ -45,7 +45,7 @@ export default function Home() {
         attackChance: 0, 
         defense: 3, 
         defenseChance: 0, 
-        life: 1, 
+        life: 6, 
         monsterImg: monsterStorage[opponentMonsterNumber]['monsterImg']
     });
 
@@ -94,7 +94,7 @@ export default function Home() {
             opponentMonster.name = monsterStorage[opponentMonsterNumber+1]['name'];
             opponentMonster.monsterImg = monsterStorage[opponentMonsterNumber+1]['monsterImg'];
 
-            opponentMonster.life = 1; 
+            opponentMonster.life = 6; 
             yourMonster.life = 6;
             yourMonster.attack = 3;
 
@@ -104,9 +104,9 @@ export default function Home() {
         }else if(yourMonster.life <= 0){ // Derrota na última luta 
             setWinner(attackerName + ' venceu!');
 
-            if (yourMonster.name === monsterStorage['5']['name']) { // última chance na luta final
-                yourMonster.name = monsterStorage['6']['name'];
-                yourMonster.monsterImg = monsterStorage['6']['monsterImg'];
+            if (yourMonster.name === monsterStorage[5]['name']) { // última chance na luta final
+                yourMonster.name = monsterStorage[6]['name'];
+                yourMonster.monsterImg = monsterStorage[6]['monsterImg'];
                 yourMonster.attack = 6;
                 yourMonster.life = 12;
             } else { // Derrota, final ruim
@@ -114,7 +114,7 @@ export default function Home() {
             }
             
         }else if(opponentMonster.life <= 0 && opponentMonsterNumber === 4){ // Vitória final, fim de jogo
-            if (yourMonster.name === monsterStorage['6']['name']) { // Final bom
+            if (yourMonster.name === monsterStorage[6]['name']) { // Final bom
                 setWinner('Parabéns! Final bom!');
             } else {
                 setWinner('Parabéns! Final Secreto!'); // Final secreto
@@ -127,12 +127,12 @@ export default function Home() {
     function useItem(item: string) {
         if (item === 'remedy' && yourMonster.remedy !== 0) {
             yourMonster.life = 6;
-            yourMonster.remedy -= 1; 
+            yourMonster.remedy! -= 1; 
 
             setBattleSituation(yourMonster.name + ' restaurou a vida!');
         }else if(item === 'maximumPower' && yourMonster.maximumPower !== 0){
             yourMonster.attack += 3;
-            yourMonster.maximumPower -= 1;
+            yourMonster.maximumPower! -= 1;
 
             setBattleSituation(yourMonster.name + ' ganhou + 3 de ataque!');
         }else{
@@ -143,10 +143,20 @@ export default function Home() {
     }
 
     return (
-        <div style={{ padding: 16, margin: 'auto', maxWidth: 990 }}>
-            <Grid container justify="space-between">
+        <Fragment>
+            <Grid 
+                container
+                direction="row"
+                justify="space-between"
+                alignItems="center"
+                style={{
+                    margin: 'auto', 
+                    maxWidth: 990, 
+                    minHeight: innerHeight, 
+                }}
+            >
                 <Grid item xs={12} sm={3}>
-                    <Monster 
+                    <Fighter 
                         monster={yourMonster}
                         commandFighter={true}
                         turn={turn}
@@ -178,11 +188,12 @@ export default function Home() {
                     </Card>
                 </Grid>
                 <Grid item xs={12} sm={3}>
-                    <Monster 
+                    <Fighter 
                         monster={opponentMonster}
                     />
                 </Grid>
             </Grid>
-        </div>
+            <FabIcon />
+        </Fragment>
     )
 }

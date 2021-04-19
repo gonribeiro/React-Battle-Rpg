@@ -1,0 +1,18 @@
+body {
+    background: #efeff1;
+}
+
+a, :link, :visited, :hover, :active {
+    color: black;
+    text-decoration: none;
+}
+
+.paper {
+    padding: 16px;
+}
+
+.fab {
+    position: fixed;
+    bottom:10px;
+    right:10px;
+}

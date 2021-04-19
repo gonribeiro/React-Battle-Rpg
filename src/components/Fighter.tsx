@@ -35,7 +35,7 @@ interface MonsterProps {
     opponentMonsterLife?: number;
 }
 
-const Monster: React.FC<MonsterProps> = (props) => {
+const Fighter: React.FC<MonsterProps> = (props) => {
     const classes = useStyles();
 
     return (
@@ -90,4 +90,4 @@ const Monster: React.FC<MonsterProps> = (props) => {
     )
 }
 
-export default Monster;
+export default Fighter;
