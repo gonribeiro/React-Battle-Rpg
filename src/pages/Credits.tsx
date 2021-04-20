@@ -31,7 +31,8 @@ export default function Credits() {
                                 size="large" 
                                 color="primary" 
                             >
-                                Desenvolvidor por: Tiago Ribeiro
+                                Desenvolvido por: <br/> 
+                                Tiago Ribeiro
                             </Button>
                         </a>
                     </Grid>
@@ -42,11 +43,13 @@ export default function Credits() {
                             target="_blank" 
                             rel="noopener noreferrer"
                         >
+                            
                             <Button
                                 size="large" 
                                 color="primary" 
                             >
-                                Repositório do Jogo
+                                Repositório do Jogo <br/>
+                                GitHub
                             </Button>
                         </a>
                     </Grid>

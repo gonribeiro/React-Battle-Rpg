@@ -4,6 +4,8 @@
 - yarn add @material-ui/core
 - yarn add @types/material-ui -D
 - yarn add @material-ui/icons
+- yarn add react-typist (https://github.com/jstejada/react-typist)
+- yarn add @types/react-typist -D
 
 [x] Mecânica de Batalhas <br/>
 [x] Quadros de exibição das informações das batalhas <br/> 
@@ -15,7 +17,6 @@
 [x] Créditos <br/>
 [ ] História <br/>
 [ ] Quadros da história <br/>
-[ ] Sons <br/>
 [ ] Sons <br/>
 [ ] Rever design de telas <br/>
 [ ] <s>Testes</s> <br/>

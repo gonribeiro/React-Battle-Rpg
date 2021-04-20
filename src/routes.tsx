@@ -4,6 +4,7 @@ import Landing from './pages/Landing';
 import Playing from './pages/Match';
 import Credits from './pages/Credits';
 import HowTo from './pages/HowTo';
+import History from './pages/History';
 
 function Routes() {
     return (
@@ -13,6 +14,7 @@ function Routes() {
                 <Route path="/playing" exact component={Playing} />
                 <Route path="/howto" exact component={HowTo} />
                 <Route path="/credits" exact component={Credits} />
+                <Route path="/history" exact component={History} />
             </Switch>
         </BrowserRouter>
     );
