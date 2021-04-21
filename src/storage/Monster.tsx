@@ -1,4 +1,14 @@
-const Monster = [
+export const yourMonsterStorage = [
+    {
+        name: "Squirtle",
+        monsterImg: "img/monsters/squirtle.jpg"
+    },{
+        name: "Mega Charizard",
+        monsterImg: "img/monsters/mega-charizard.jpg"
+    }
+]
+
+export const opponentMonsterStorage = [
     {
         name: "Weezing",
         monsterImg: "img/monsters/weezing.jpg"
@@ -14,13 +24,5 @@ const Monster = [
     },{
         name: "Dark Lugia",
         monsterImg: "img/monsters/dark-lugia.jpg"
-    },{
-        name: "Squirtle",
-        monsterImg: "img/monsters/squirtle.jpg"
-    },{
-        name: "Mega Charizard",
-        monsterImg: "img/monsters/mega-charizard.jpg"
     }
 ]
-
-export default Monster

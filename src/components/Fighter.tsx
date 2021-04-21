@@ -1,11 +1,13 @@
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
-import CardActions from '@material-ui/core/CardActions';
-import Button from '@material-ui/core/Button';
+import { 
+    Card, 
+    CardActionArea, 
+    CardContent, 
+    CardMedia, 
+    Typography, 
+    CardActions, 
+    Button 
+} from '@material-ui/core';
 
 const useStyles = makeStyles({
     root: {
@@ -58,12 +60,12 @@ const Fighter: React.FC<MonsterProps> = (props) => {
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            { props.commandFighter && props.opponentMonsterLife !== 0 && props.monster.life !== 0 ? (
+            { props.commandFighter && props.opponentMonsterLife! > 0 && props.monster.life > 0 ? (
                 <CardActions>
                     <div>
                         <Button 
                             size="small" 
-                            color="primary" 
+                            variant="contained"
                             onClick={props.fight} 
                         >
                             {props.turn ? 'Ataque!' : 'Defenda!'}

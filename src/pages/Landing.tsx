@@ -1,56 +1,80 @@
 import { Link } from 'react-router-dom';
 
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
+import { Paper, Grid, Button } from '@material-ui/core';
+
+import GitHubIcon from '@material-ui/icons/GitHub';
 
 export default function Landing() {
     const innerHeight = window.innerHeight - 40;
 
     return (
-        <Grid 
-            container
-            direction="row"
-            justify="center"
-            alignItems="center"
+        <div
             style={{
-                margin: 'auto', 
-                maxWidth: 990, 
-                minHeight: innerHeight, 
+                backgroundImage: "url(img/screens/landing.jpg)",
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                height: "97vh",
+                width: "100%",
             }}
         >
-            <Paper className="paper">
-                <Grid container spacing={2} justify="center">
-                    <Link to="/playing">
+            <Grid 
+                container
+                direction="row"
+                justify="center"
+                alignItems="center"
+                style={{
+                    margin: "auto", 
+                    maxWidth: 990, 
+                    minHeight: innerHeight, 
+                }}
+            >
+                <Paper className="paper">
+                    <Grid container spacing={2} justify="center">
                         <Button
                             size="large" 
                             color="primary" 
+                            disabled
                         >
-                            Novo Jogo
+                            Modo História
                         </Button>
-                    </Link>
-                </Grid>
-                <Grid container spacing={2} justify="center">
-                    <Link to="/howto">
-                        <Button
-                            size="large" 
-                            color="primary" 
+                    </Grid>
+                    <Grid container spacing={2} justify="center">
+                        <Link to="/playing">
+                            <Button
+                                size="large" 
+                                color="primary" 
+                            >
+                                Modo Batalha
+                            </Button>
+                        </Link>
+                    </Grid>
+                    <Grid container spacing={2} justify="center">
+                        <Link to="/howto">
+                            <Button
+                                size="large" 
+                                color="primary" 
+                            >
+                                Mecânicas do Jogo
+                            </Button>
+                        </Link>
+                    </Grid>
+                    <Grid container spacing={2} justify="center">
+                        <a 
+                            href="https://github.com/gonribeiro/BattleMonsterReact" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
                         >
-                            Mecânicas do Jogo
-                        </Button>
-                    </Link>
-                </Grid>
-                <Grid container spacing={2} justify="center">
-                    <Link to="/credits">
-                        <Button
-                            size="large" 
-                            color="primary" 
-                        >
-                            Créditos
-                        </Button>
-                    </Link>
-                </Grid>
-            </Paper>
-        </Grid>
+                            <Button
+                                size="large" 
+                                color="primary" 
+                            >
+                                <GitHubIcon />
+                            </Button>
+                        </a>
+                    </Grid>
+                </Paper>
+            </Grid>
+        </div>
     );
 }

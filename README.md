@@ -19,4 +19,6 @@
 [ ] Quadros da história <br/>
 [ ] Sons <br/>
 [ ] Rever design de telas <br/>
+[ ] Melhorar textos de mecânicas do jogo <br/>
+[ ] Instrução para deitar o celular quando acessando por um smartphone<br/>
 [ ] <s>Testes</s> <br/>
