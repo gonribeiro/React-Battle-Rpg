@@ -1,3 +1,7 @@
+# Projeto
+
+https://react-battle-monster.herokuapp.com/
+
 ![Landing](docs/img/landing.jpg)
 
 ![Battle](docs/img/battle.jpg)
@@ -6,9 +10,9 @@
 
 - yarn create react-app . --template typescript
 - yarn add react-router-dom
-- yarn add @types/react-router-dom -D
+- yarn add @types/react-router-dom
 - yarn add @material-ui/core
-- yarn add @types/material-ui -D
+- yarn add @types/material-ui
 - yarn add @material-ui/icons
 
 # Tarefas
