@@ -1,11 +1,17 @@
-- yarn create react-app monster --template typescript
+![Landing](docs/img/landing.jpg)
+
+![Battle](docs/img/battle.jpg)
+
+# Projeto
+
+- yarn create react-app . --template typescript
 - yarn add react-router-dom
 - yarn add @types/react-router-dom -D
 - yarn add @material-ui/core
 - yarn add @types/material-ui -D
 - yarn add @material-ui/icons
-- yarn add react-typist (https://github.com/jstejada/react-typist)
-- yarn add @types/react-typist -D
+
+# Tarefas
 
 [x] Mecânica de Batalhas <br/>
 [x] Quadros de exibição das informações das batalhas <br/> 
@@ -17,6 +23,7 @@
 [x] Créditos <br/>
 [ ] História <br/>
 [ ] Quadros da história <br/>
+[ ] Efeitos de transição entre as histórias e batalhas <br/>
 [ ] Sons <br/>
 [ ] Rever design de telas <br/>
 [ ] Melhorar textos de mecânicas do jogo <br/>

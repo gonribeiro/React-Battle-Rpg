@@ -65,7 +65,7 @@ const Fighter: React.FC<MonsterProps> = (props) => {
                     <div>
                         <Button 
                             size="small" 
-                            variant="contained"
+                            color="primary" 
                             onClick={props.fight} 
                         >
                             {props.turn ? 'Ataque!' : 'Defenda!'}

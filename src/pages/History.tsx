@@ -4,7 +4,7 @@ import { makeStyles, Paper, Grid, Typography } from '@material-ui/core';
 
 import FabIcon from '../utils/Fab';
 
-import Texts from '../storage/History';
+import { Ato1 } from '../storage/History';
 
 const useStyles = makeStyles({
     text: {
@@ -23,8 +23,8 @@ export default function History() {
 
     useEffect(() => {
         // Escreve o texto pausadamente, letra por letra 
-        if (numberLetter < Texts[historyNumber]['text'].length) { 
-            setText(text + Texts[historyNumber]['text'].charAt(numberLetter)); // Adiciona a próxima letra ao texto
+        if (numberLetter < Ato1[historyNumber]['text'].length) { 
+            setText(text + Ato1[historyNumber]['text'].charAt(numberLetter)); // Adiciona a próxima letra ao texto
             setTimeout(() => {
                 setNumberLetter(numberLetter + 1);
             }, 75)

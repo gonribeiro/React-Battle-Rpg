@@ -65,11 +65,15 @@ export default function Match() {
         attacker.attackChance = randomLuck();
         defender.defenseChance = randomLuck();
 
-        let result = (attacker.attack + attacker.attackChance) - (defender.defense + defender.defenseChance);
+        let battleResult = (attacker.attack + attacker.attackChance) - (defender.defense + defender.defenseChance);
 
-        if (result > 0) {
-            defender.life -= result;
-            setBattleSituation(defender.name + ' sofreu ' + result + ' de dano!')
+        if (battleResult > 0) {
+            defender.life -= battleResult;
+            setBattleSituation(defender.name + ' sofreu ' + battleResult + ' de dano!')
+
+            if (defender.life <= 0) {
+                prepareNextBattle(attacker.name);
+            }
         } else {
             setBattleSituation(defender.name + ' defendeu!')
         }
@@ -79,15 +83,11 @@ export default function Match() {
             defender.name + ' usou ' + (defender.defense + defender.defenseChance) + ' de defesa!'
         )
 
-        checkBattleSituation(attacker.name);
+        setTurn(!turn);
     }
 
     /** @todo Melhorar essa zona */
-    function checkBattleSituation(attackerName: string) {
-        if (winner !== '') { // Apaga informação do vencedor no início da batalha
-            setWinner('');
-        }
-
+    function prepareNextBattle(attackerName: string) {
         if (yourMonster.life <= 0 && opponentMonsterNumber !== 4) { // Derrota antes da última luta, final ruim
             setWinner(attackerName + ' venceu! Fim de jogo.');
         }else if(opponentMonster.life <= 0 && opponentMonsterNumber <= 3){ // Vitória, próxima luta
@@ -97,8 +97,8 @@ export default function Match() {
 
             opponentMonster.name = opponentMonsterStorage[opponentMonsterNumber+1]['name'];
             opponentMonster.monsterImg = opponentMonsterStorage[opponentMonsterNumber+1]['monsterImg'];
-
             opponentMonster.life = 6; 
+
             yourMonster.life = 6;
             yourMonster.attack = 3;
 
@@ -116,14 +116,12 @@ export default function Match() {
             } else { // Derrota, final ruim
                 setWinner(attackerName + ' venceu! Fim de jogo.');
             }
-        }else if(opponentMonster.life <= 0 && opponentMonsterNumber === 4){ // Vitória final, fim de jogo
+        }else{ // Vitória final, fim de jogo
             if (yourMonster.name === yourMonsterStorage[1]['name']) { // Final bom
                 setWinner(attackerName + ' venceu! Fim de jogo!');
-            } else {
-                setWinner(attackerName + ' venceu! Fim de jogo!'); // Final secreto
+            } else { // Final secreto
+                setWinner(attackerName + ' venceu! Fim de jogo!'); 
             }
-        }else{
-            setTurn(!turn); // Próximo turno da tabalha
         }
     }
 
@@ -142,13 +140,13 @@ export default function Match() {
             setBattleSituation('Você não possui mais esse item.');
         }
 
-        setTurn(false);
+        setTurn(false); // Após uso do item, seu personagem fica na defensiva
     }
 
     return (
         <div
             style={{
-                backgroundImage: "url(img/screens/battle.jpg)",
+                backgroundImage: "url(img/screens/background-battle3.jpg)",
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',

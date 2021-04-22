@@ -10,7 +10,7 @@ export default function Landing() {
     return (
         <div
             style={{
-                backgroundImage: "url(img/screens/landing.jpg)",
+                backgroundImage: "url(img/screens/background-landing.jpg)",
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
