@@ -3,7 +3,6 @@ body {
 }
 
 a, :link, :visited, :hover, :active {
-    color: black;
     text-decoration: none;
 }
 

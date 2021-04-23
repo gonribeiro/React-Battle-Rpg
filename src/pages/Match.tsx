@@ -26,7 +26,6 @@ export default function Match() {
     const [battleSituation, setBattleSituation] = useState(String);
     const [battleStatus, setBattleStatus] = useState(String);
     const [opponentMonsterNumber, setOpponentMonsterNumber] = useState(0);
-    const [winner, setWinner] = useState(String);
     
     const [yourMonster] = useState<Monster>({
         name: yourMonsterStorage[0]['name'], 
@@ -89,9 +88,9 @@ export default function Match() {
     /** @todo Melhorar essa zona */
     function prepareNextBattle(attackerName: string) {
         if (yourMonster.life <= 0 && opponentMonsterNumber !== 4) { // Derrota antes da última luta, final ruim
-            setWinner(attackerName + ' venceu! Fim de jogo.');
+            setBattleSituation(attackerName + ' venceu! Fim de jogo.');
         }else if(opponentMonster.life <= 0 && opponentMonsterNumber <= 3){ // Vitória, próxima luta
-            setWinner(attackerName + ' venceu!');
+            setBattleSituation(attackerName + ' venceu!');
             setOpponentMonsterNumber(opponentMonsterNumber+1);
             setTurn(true);
 
@@ -106,7 +105,7 @@ export default function Match() {
                 opponentMonster.life = 16; 
             }
         }else if(yourMonster.life <= 0){ // Derrota na última luta 
-            setWinner(attackerName + ' venceu!');
+            setBattleSituation(attackerName + ' venceu!');
 
             if (yourMonster.name === yourMonsterStorage[0]['name']) { // última chance na luta final
                 yourMonster.name = yourMonsterStorage[1]['name'];
@@ -114,13 +113,13 @@ export default function Match() {
                 yourMonster.attack = 6;
                 yourMonster.life = 12;
             } else { // Derrota, final ruim
-                setWinner(attackerName + ' venceu! Fim de jogo.');
+                setBattleSituation(attackerName + ' venceu! Fim de jogo.');
             }
         }else{ // Vitória final, fim de jogo
             if (yourMonster.name === yourMonsterStorage[1]['name']) { // Final bom
-                setWinner(attackerName + ' venceu! Fim de jogo!');
+                setBattleSituation(attackerName + ' venceu! Fim de jogo!');
             } else { // Final secreto
-                setWinner(attackerName + ' venceu! Fim de jogo!'); 
+                setBattleSituation(attackerName + ' venceu! Fim de jogo!'); 
             }
         }
     }
@@ -180,14 +179,11 @@ export default function Match() {
                         <CardActionArea>
                             <CardContent>
                                 <Typography color="textSecondary" variant="h6" component="p" align="center">
-                                    {battleSituation}
-                                    <br /><br />
-                                    {winner}
-                                    <br /><br />
+                                    {battleSituation} <br /><br />
                                 </Typography>
                                 <Typography variant="body2" align="center">
                                     Detalhes da batalha: <br />
-                                    {battleStatus} <br />
+                                    {battleStatus}
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
