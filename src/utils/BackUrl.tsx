@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import Fab from "@material-ui/core/Fab";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
-export default function FabIcon() {
+export default function Back() {
     return (
         <div className="fab" style={{margin: "10px"}}>
             <Link to="/">
                 <Fab>
-                    <ArrowBackIcon/>  
+                    <ArrowBackIcon />  
                 </Fab>
             </Link>
         </div>

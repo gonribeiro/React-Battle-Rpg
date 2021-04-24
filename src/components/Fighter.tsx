@@ -1,5 +1,4 @@
 import { 
-    makeStyles,
     Card, 
     CardActionArea, 
     CardContent, 
@@ -12,12 +11,6 @@ import {
 
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import OfflineBoltOutlinedIcon from '@material-ui/icons/OfflineBoltOutlined';
-
-const useStyles = makeStyles({
-    media: {
-        height: 140,
-    },
-});
 
 interface MonsterProps {
     monster: {
@@ -39,31 +32,30 @@ interface MonsterProps {
 }
 
 const Fighter: React.FC<MonsterProps> = (props) => {
-    const classes = useStyles();
-
     return (
         <div>
             <Card>
                 <CardActionArea>
                     <CardMedia
-                        className={classes.media}
                         image={props.monster.monsterImg}
+                        style={{
+                            height: 140
+                        }}
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
                             {props.monster.name}
                         </Typography>
-                        <Typography variant="h5" color="textSecondary" component="p">
-                            {props.monster.life >= 0 ? props.monster.life : '0'} HP
-                        </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
-                            {props.monster.attack} Ataque / {props.monster.defense} Defesa
+                            {props.monster.life >= 0 ? props.monster.life : '0'} HP 
+                            • {props.monster.attack} Ataque 
+                            • {props.monster.defense} Defesa
                         </Typography>
                     </CardContent>
                 </CardActionArea>
             </Card>
             { props.commandFighter && props.opponentMonsterLife! > 0 && props.monster.life > 0 ? (
-                <CardActions >
+                <CardActions>
                     <Fab 
                         size="small" 
                         color="primary" 

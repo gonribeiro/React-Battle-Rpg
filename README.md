@@ -1,6 +1,6 @@
 # Projeto
 
-https://react-battle-monster.herokuapp.com/
+## https://react-battle-monster.herokuapp.com/
 
 ![Landing](docs/img/landing.jpg)
 
@@ -14,6 +14,8 @@ https://react-battle-monster.herokuapp.com/
 - yarn add @material-ui/core
 - yarn add @types/material-ui
 - yarn add @material-ui/icons
+- yarn add js-cookie
+- yarn add @types/js-cookie -D
 
 # Tarefas
 
@@ -29,7 +31,7 @@ https://react-battle-monster.herokuapp.com/
 [ ] Quadros da história <br/>
 [ ] Efeitos de transição entre as histórias e batalhas <br/>
 [ ] Sons <br/>
-[ ] Rever design de telas <br/>
-[ ] Melhorar textos de mecânicas do jogo <br/>
-[ ] Instrução para deitar o celular quando acessando por um smartphone<br/>
+[x] Rever design de telas <br/>
+[x] Melhorar textos de mecânicas do jogo <br/>
+[ ] <s>Instrução para deitar o celular quando acessando por um smartphone</s><br/>
 [ ] <s>Testes</s> <br/>

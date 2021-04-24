@@ -1,18 +1,20 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Landing from './pages/Landing';
-import Playing from './pages/Match';
+import BattleMode from './pages/Match';
 import HowTo from './pages/HowTo';
-import History from './pages/History';
+import Story from './pages/Story';
+import StoryBattle from './pages/Match';
 
 function Routes() {
     return (
         <BrowserRouter>
             <Switch>
                 <Route path="/" exact component={Landing} />
-                <Route path="/playing" exact component={Playing} />
+                <Route path="/battle-mode" exact component={BattleMode} />
                 <Route path="/howto" exact component={HowTo} />
-                <Route path="/history" exact component={History} />
+                <Route path="/story-mode" exact component={Story} />
+                <Route path="/story-battle" exact component={StoryBattle} />
             </Switch>
         </BrowserRouter>
     );

@@ -5,8 +5,6 @@ import { Paper, Grid, Button } from '@material-ui/core';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
 export default function Landing() {
-    const innerHeight = window.innerHeight - 40;
-
     return (
         <div
             style={{
@@ -26,21 +24,33 @@ export default function Landing() {
                 style={{
                     margin: "auto", 
                     maxWidth: 990, 
-                    minHeight: innerHeight, 
+                    minHeight: window.innerHeight - 40, 
                 }}
             >
                 <Paper className="paper">
                     <Grid container spacing={2} justify="center">
-                        <Button
-                            size="large" 
-                            color="primary" 
-                            disabled
-                        >
-                            Modo História
-                        </Button>
+                        <Link to="/story-mode">
+                            <Button
+                                size="large" 
+                                color="primary" 
+                            >
+                                Novo Modo História
+                            </Button>
+                        </Link>
                     </Grid>
                     <Grid container spacing={2} justify="center">
-                        <Link to="/playing">
+                        <Link to="/story-mode">
+                            <Button
+                                size="large" 
+                                color="primary" 
+                                disabled
+                            >
+                                Continuar História
+                            </Button>
+                        </Link>
+                    </Grid>
+                    <Grid container spacing={2} justify="center">
+                        <Link to="/battle-mode">
                             <Button
                                 size="large" 
                                 color="primary" 

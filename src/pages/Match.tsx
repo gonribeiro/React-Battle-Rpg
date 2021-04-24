@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
+
+import Cookies from 'js-cookie';
 
 import { Grid, Card, CardActionArea, CardContent, Typography } from '@material-ui/core';
 
 import Fighter from "../components/Fighter";
 
-import FabIcon from '../utils/Fab';
+import BackUrl from '../utils/BackUrl';
 
 import { yourMonsterStorage, opponentMonsterStorage } from "../storage/Monster";
 
@@ -21,20 +24,28 @@ interface Monster {
 }
 
 export default function Match() {
-    const innerHeight = window.innerHeight - 40;
+    const history = useHistory();
     const [turn, setTurn] = useState(true);
     const [battleSituation, setBattleSituation] = useState(String);
     const [battleStatus, setBattleStatus] = useState(String);
-    const [opponentMonsterNumber, setOpponentMonsterNumber] = useState(0);
-    
+    const [yourMonsterNumber, setYourMonsterNumber] = useState(
+        window.location.href.indexOf('story-battle') > -1
+        ? Number(Cookies.get('yourMonsterNumber')) // Modo história
+        : 0 // Modo batalha
+    );
+    const [opponentMonsterNumber, setOpponentMonsterNumber] = useState(
+        window.location.href.indexOf('story-battle') > -1
+        ? Number(Cookies.get('opponentMonsterNumber')) // Modo história
+        : 0 // Modo batalha
+    );
     const [yourMonster] = useState<Monster>({
-        name: yourMonsterStorage[0]['name'], 
+        name: yourMonsterStorage[yourMonsterNumber]['name'], 
         attack: 3, 
         attackChance: 0, 
         defense: 3, 
         defenseChance: 0, 
-        life: 6, 
-        monsterImg: yourMonsterStorage[0]['monsterImg'],
+        life: yourMonsterStorage[yourMonsterNumber]['life'], 
+        monsterImg: yourMonsterStorage[yourMonsterNumber]['monsterImg'],
         remedy: 2,
         maximumPower: 2
     });
@@ -44,7 +55,7 @@ export default function Match() {
         attackChance: 0, 
         defense: 3, 
         defenseChance: 0, 
-        life: 6, 
+        life: opponentMonsterStorage[opponentMonsterNumber]['life'], 
         monsterImg: opponentMonsterStorage[opponentMonsterNumber]['monsterImg']
     });
 
@@ -53,13 +64,8 @@ export default function Match() {
     };
 
     function fighting() {
-        if (turn) {
-            var attacker = yourMonster;
-            var defender = opponentMonster;
-        } else {
-            var attacker = opponentMonster;
-            var defender = yourMonster;
-        }
+        let attacker = turn ? yourMonster : opponentMonster;
+        let defender = turn ? opponentMonster : yourMonster;
 
         attacker.attackChance = randomLuck();
         defender.defenseChance = randomLuck();
@@ -85,8 +91,46 @@ export default function Match() {
         setTurn(!turn);
     }
 
+    function useItem(item: string) {
+        if (item === 'remedy' && yourMonster.remedy !== 0) {
+            yourMonster.life = 6;
+            yourMonster.remedy! --; 
+
+            setBattleSituation(yourMonster.name + ' restaurou a vida!');
+        }else if(item === 'maximumPower' && yourMonster.maximumPower !== 0){
+            yourMonster.attack += 3;
+            yourMonster.maximumPower! --;
+
+            setBattleSituation(yourMonster.name + ' ganhou + 3 de ataque!');
+        }else{
+            setBattleSituation('Você não possui mais esse item.');
+        }
+
+        setTurn(false); // Após uso do item, seu personagem fica na defensiva
+    }
+
+    console.log(yourMonsterNumber)
+
     /** @todo Melhorar essa zona */
     function prepareNextBattle(attackerName: string) {
+        if (window.location.href.indexOf('story-battle') > -1) { // Modo história
+            if (opponentMonster.life <= 0 && opponentMonsterNumber !== 4) {
+                let nextStory = Number(Cookies.get('storyNumber')) + 1;
+                Cookies.set('storyNumber', String(nextStory));
+            }else if(yourMonster.life <= 0 && opponentMonsterNumber === 4) {
+                Cookies.set('storyNumber', String(30)); // Última chance
+            }else if(yourMonster.life <= 0) {
+                Cookies.set('storyNumber', String(36)); // Fim de jogo
+            }else if(opponentMonster.life <= 0 && yourMonsterNumber === 0){
+                Cookies.set('storyNumber', String(59)); // Final secreto
+            }else{ 
+                Cookies.set('storyNumber', String(40)); // Final bom
+            }
+
+            history.push('/story-mode');
+            return;
+        }
+
         if (yourMonster.life <= 0 && opponentMonsterNumber !== 4) { // Derrota antes da última luta, final ruim
             setBattleSituation(attackerName + ' venceu! Fim de jogo.');
         }else if(opponentMonster.life <= 0 && opponentMonsterNumber <= 3){ // Vitória, próxima luta
@@ -96,22 +140,18 @@ export default function Match() {
 
             opponentMonster.name = opponentMonsterStorage[opponentMonsterNumber+1]['name'];
             opponentMonster.monsterImg = opponentMonsterStorage[opponentMonsterNumber+1]['monsterImg'];
-            opponentMonster.life = 6; 
+            opponentMonster.life = opponentMonsterStorage[opponentMonsterNumber+1]['life']; 
 
             yourMonster.life = 6;
             yourMonster.attack = 3;
-
-            if (opponentMonsterNumber === 3) { // Vitória, luta final
-                opponentMonster.life = 16; 
-            }
         }else if(yourMonster.life <= 0){ // Derrota na última luta 
             setBattleSituation(attackerName + ' venceu!');
 
             if (yourMonster.name === yourMonsterStorage[0]['name']) { // última chance na luta final
                 yourMonster.name = yourMonsterStorage[1]['name'];
                 yourMonster.monsterImg = yourMonsterStorage[1]['monsterImg'];
-                yourMonster.attack = 6;
-                yourMonster.life = 12;
+                yourMonster.life = yourMonsterStorage[1]['life'];
+                yourMonster.attack = 3;
             } else { // Derrota, final ruim
                 setBattleSituation(attackerName + ' venceu! Fim de jogo.');
             }
@@ -122,24 +162,6 @@ export default function Match() {
                 setBattleSituation(attackerName + ' venceu! Fim de jogo!'); 
             }
         }
-    }
-
-    function useItem(item: string) {
-        if (item === 'remedy' && yourMonster.remedy !== 0) {
-            yourMonster.life = 6;
-            yourMonster.remedy! -= 1; 
-
-            setBattleSituation(yourMonster.name + ' restaurou a vida!');
-        }else if(item === 'maximumPower' && yourMonster.maximumPower !== 0){
-            yourMonster.attack += 3;
-            yourMonster.maximumPower! -= 1;
-
-            setBattleSituation(yourMonster.name + ' ganhou + 3 de ataque!');
-        }else{
-            setBattleSituation('Você não possui mais esse item.');
-        }
-
-        setTurn(false); // Após uso do item, seu personagem fica na defensiva
     }
 
     return (
@@ -161,7 +183,7 @@ export default function Match() {
                 style={{
                     margin: 'auto', 
                     maxWidth: 990, 
-                    minHeight: innerHeight,
+                    minHeight: window.innerHeight - 40,
                 }}
             >
                 <Grid item xs={12} sm={3}>
@@ -182,7 +204,6 @@ export default function Match() {
                                     {battleSituation} <br /><br />
                                 </Typography>
                                 <Typography variant="body2" align="center">
-                                    Detalhes da batalha: <br />
                                     {battleStatus}
                                 </Typography>
                             </CardContent>
@@ -195,7 +216,7 @@ export default function Match() {
                     />
                 </Grid>
             </Grid>
-            <FabIcon />
+            <BackUrl />
         </div>
     )
 }

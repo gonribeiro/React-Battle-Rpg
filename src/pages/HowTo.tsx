@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 
 import { makeStyles, 
     Paper, 
@@ -11,7 +11,7 @@ import { makeStyles,
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import FabIcon from '../utils/Fab';
+import BackUrl from '../utils/BackUrl';
 
 const useStyles = makeStyles({
     text: {
@@ -21,7 +21,6 @@ const useStyles = makeStyles({
 });
 
 export default function HowTo() {
-    const innerHeight = window.innerHeight - 40;
     const [expandedAccordion, setExpandedAccordion] = useState(''); // Accordion
     const classes = useStyles();
 
@@ -30,7 +29,7 @@ export default function HowTo() {
     };
 
     return (
-        <div>
+        <Fragment>
             <Grid 
                 container
                 direction="row"
@@ -38,8 +37,8 @@ export default function HowTo() {
                 alignItems="center"
                 style={{
                     margin: 'auto', 
-                    maxWidth: 840, 
-                    minHeight: innerHeight, 
+                    maxWidth: 990, 
+                    minHeight: window.innerHeight - 40, 
                 }}
             >
                 <Paper className="paper">
@@ -137,7 +136,7 @@ export default function HowTo() {
                     </Accordion>
                 </Paper>
             </Grid>
-            <FabIcon />
-        </div>
+            <BackUrl />
+        </Fragment>
     );
 }
