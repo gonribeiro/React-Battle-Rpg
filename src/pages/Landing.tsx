@@ -1,10 +1,24 @@
 import { Link } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 import { Paper, Grid, Button } from '@material-ui/core';
 
 import GitHubIcon from '@material-ui/icons/GitHub';
 
 export default function Landing() {
+    const history = useHistory();
+
+    function newStoryMode() {
+        Cookies.remove('opponentMonsterNumber');
+        Cookies.remove('yourMonsterNumber');
+        Cookies.remove('storyNumber');
+        Cookies.set('remedy', String(2));
+        Cookies.set('maximumPower', String(2));
+        history.push('/story-mode');
+        return;
+    }
+
     return (
         <div
             style={{
@@ -29,21 +43,23 @@ export default function Landing() {
             >
                 <Paper className="paper">
                     <Grid container spacing={2} justify="center">
-                        <Link to="/story-mode">
-                            <Button
-                                size="large" 
-                                color="primary" 
-                            >
-                                Novo Modo História
-                            </Button>
-                        </Link>
+                        <Button
+                            size="large" 
+                            color="primary" 
+                            onClick={newStoryMode}
+                        >
+                            Novo Modo História
+                        </Button>
                     </Grid>
                     <Grid container spacing={2} justify="center">
                         <Link to="/story-mode">
                             <Button
                                 size="large" 
                                 color="primary" 
-                                disabled
+                                disabled={
+                                    // Havendo cookie, há opção de continuar
+                                    String(Cookies.get('storyNumber')) !== 'undefined' ? false : true
+                                } 
                             >
                                 Continuar História
                             </Button>

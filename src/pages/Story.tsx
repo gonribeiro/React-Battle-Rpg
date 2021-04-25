@@ -24,7 +24,7 @@ export default function Story() {
             setText(text + storyStorage[storyNumber]['text'].charAt(numberLetter)); // Adiciona a próxima letra ao texto
             setTimeout(() => {
                 setNumberLetter(numberLetter + 1);
-            }, 1)
+            }, 15)
         }
     }, [numberLetter]);
 
@@ -33,6 +33,7 @@ export default function Story() {
         // Fim do jogo
         if(Boolean(storyStorage[storyNumber]['endingGame']) === true){
             Cookies.remove('opponentMonsterNumber');
+            Cookies.remove('yourMonsterNumber');
             Cookies.remove('storyNumber');
             history.push('/');
             return;

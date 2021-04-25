@@ -77,7 +77,7 @@ const Story = [
     },{
         text: '"É o fim..."'
     },{
-        text: '[Na direção aposta, algo voa rapidamente até eles e defende o ataque!]'
+        text: '[Na direção oposta, algo voa rapidamente até eles e defende o ataque!]'
     },{
         text: '[Uma grande explosão acontece! E uma nova batalha se inicia!]',
         callBattle: 4
