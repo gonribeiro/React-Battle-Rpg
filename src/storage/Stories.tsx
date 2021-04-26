@@ -1,5 +1,6 @@
 const Story = [
-    { // Part 1
+    {
+        id: "part1",
         text: '"Há um ano."',
     },{
         text: '"Devido a problemas na rede saneamento básico a população recebe água com altos níveis de geosmina. Segundo as autoridades, não é nocivo a saúde."',
@@ -20,7 +21,8 @@ const Story = [
     },{
         text: '[Adriana dá a volta pelo rio e chega na única entrada. Ao entrar na fábrica, é surpreendida!]',
         callBattle: 0
-    },{ // Part 2
+    },{
+        id: 'part2',
         text: '"Foi um grande susto. Fomos atacados de repente."'
     },{
         text: '"Pelo que sei, não é comum avistar aquela espécie nessa região."'
@@ -30,7 +32,8 @@ const Story = [
     },{
         text: '[Ao acessar uma das salas, um novo ataque acontece!]',
         callBattle: 1
-    },{ // Part 3
+    },{
+        id: 'part3',
         text: '"Ok, ok... Temos que tomar mais cuidado. Dois ataques de surpresa, não quero um terceiro."'
     },{
         text: '"Aquela outra espécie, também não é comum nessa região. Ambos estavam com um comportamento estranho. Se escondendo na escuridão, atacando de surpresa e muito agressivos."'
@@ -45,7 +48,8 @@ const Story = [
     },{
         text: '"Vitória garantida, vamos para a próxima!"',
         callBattle: 3
-    },{ // Part 4
+    },{ 
+        id: 'part4',
         text: '"Vencemos, vencemos! Quatro vitória só hoje!"'
     },{
         text: '[Porém...]'
@@ -68,7 +72,8 @@ const Story = [
     },{
         text: '[Ele é um...]',
         callBattle: 4
-    },{ // Part 5
+    },{
+        id: 'part5',
         text: '[Adriana perde a batalha!]'
     },{
         text: '"Não temos como vencê-lo..."'
@@ -81,7 +86,8 @@ const Story = [
     },{
         text: '[Uma grande explosão acontece! E uma nova batalha se inicia!]',
         callBattle: 4
-    },{ // Bad ending
+    },{
+        id: 'bad-engind',
         text: '"NÃO!"'
     },{
         text: '[Adriana abraça seu monstrinho enquanto o oponente prepara um último golpe.]'
@@ -90,7 +96,8 @@ const Story = [
     },{
         text: '[[[ FIM DE JOGO. Tente novamente. ]]]',
         endingGame: true
-    },{ // Good ending
+    },{
+        id: 'good-engind',
         text: '"Vencemos! Estamos a salvos!"'
     },{
         text: '[Ambos os monstros, após o último ataque, interrompem a batalha.]'
@@ -129,7 +136,8 @@ const Story = [
     },{
         text: '[[[ PARABÉNS! VOCÊ FINALIZOU O JOGO! Jogue novamente e tente alcançar o final secreto! Até mais! ]]]',
         endingGame: true
-    },{ // Secret ending
+    },{
+        id: 'secret-engind',
         text: '[Adriana e seu monstrinho lutam bravamente! Mas são atingidos por um poderoso ataque! Ambos caem muito feridos no chão.]'
     },{
         text: '"Ele é forte demais..."'

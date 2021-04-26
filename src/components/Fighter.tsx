@@ -14,6 +14,7 @@ import OfflineBoltOutlinedIcon from '@material-ui/icons/OfflineBoltOutlined';
 
 interface MonsterProps {
     monster: {
+        id: string;
         name: string;
         attack: number;
         attackChance: number;

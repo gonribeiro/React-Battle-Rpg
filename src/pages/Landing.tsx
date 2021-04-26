@@ -57,7 +57,7 @@ export default function Landing() {
                                 size="large" 
                                 color="primary" 
                                 disabled={
-                                    // Havendo cookie, há opção de continuar
+                                    // Havendo cookie, há opção de continuar história
                                     String(Cookies.get('storyNumber')) !== 'undefined' ? false : true
                                 } 
                             >

@@ -27,8 +27,8 @@
 [x] Condições de vitórias e derrotas <br/>
 [x] Informações das mecânicas do jogo <br/>
 [x] Créditos <br/>
-[ ] História <br/>
-[ ] Quadros da história <br/>
+[x] História <br/>
+[x] Quadros da história <br/>
 [ ] Efeitos de transição entre as histórias e batalhas <br/>
 [ ] Sons <br/>
 [x] Rever design de telas <br/>

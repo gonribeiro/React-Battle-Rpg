@@ -7,7 +7,7 @@ import FastForwardIcon from '@material-ui/icons/FastForward';
 
 import BackUrl from '../utils/BackUrl';
 
-import storyStorage from '../storage/Story';
+import storyStorage from '../storage/Stories';
 
 export default function Story() {
     const history = useHistory();
@@ -28,28 +28,26 @@ export default function Story() {
         }
     }, [numberLetter]);
 
-    /** @todo Melhorar essa zona */
     function advanceTheStory() {
         // Fim do jogo
         if(Boolean(storyStorage[storyNumber]['endingGame']) === true){
-            Cookies.remove('opponentMonsterNumber');
             Cookies.remove('yourMonsterNumber');
             Cookies.remove('storyNumber');
             history.push('/');
             return;
         }
         
-        if(String(storyStorage[storyNumber]['callBattle']) !== 'undefined'){ // Verifica se ato possui batalha
-            if (storyNumber !== 35) { 
-                Cookies.set('yourMonsterNumber', String(0)); // Segue luta
-            } else {
-                Cookies.set('yourMonsterNumber', String(1)); // Chance final para final bom
+        if(String(storyStorage[storyNumber]['callBattle']) !== 'undefined'){ // Chama a batalha da história
+            if (storyNumber !== 35) { // Segue luta com inicial
+                Cookies.set('yourMonsterNumber', String(0));
+            } else { // Ultima chance para final bom
+                Cookies.set('yourMonsterNumber', String(1)); 
             }
 
-            Cookies.set('opponentMonsterNumber', String(storyStorage[storyNumber]['callBattle'])); // Informa o número da batalha
-            Cookies.set('storyNumber', String(storyNumber)); // Onde a história parou
+            Cookies.set('opponentMonsterNumber', String(storyStorage[storyNumber]['callBattle'])); // Número da batalha
+            Cookies.set('storyNumber', String(storyNumber)); // Guarda onde a história parou
             history.push('/story-battle');
-        }else{ // Após final de cada ato, inicia uma batalha
+        }else{ // Próximo trecho da história
             setText('');
             setNumberLetter(-1); // "-1" Elimina o primeiro caracter quando inicia o texto
             setStoryNumber(storyNumber + 1);
