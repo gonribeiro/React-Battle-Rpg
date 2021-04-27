@@ -9,12 +9,15 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 export default function Landing() {
     const history = useHistory();
 
-    function newStoryMode() {
-        Cookies.remove('opponentMonsterNumber');
-        Cookies.remove('yourMonsterNumber');
-        Cookies.remove('storyNumber');
-        Cookies.set('remedy', String(2));
-        Cookies.set('maximumPower', String(2));
+    function storyMode(mode: String) {
+        if (mode === 'new') {
+            Cookies.remove('opponentMonsterNumber');
+            Cookies.remove('yourMonsterNumber');
+            Cookies.remove('storyNumber');
+            Cookies.set('remedy', String(2));
+            Cookies.set('maximumPower', String(2));
+        }
+        
         history.push('/story-mode');
         return;
     }
@@ -46,34 +49,33 @@ export default function Landing() {
                         <Button
                             size="large" 
                             color="primary" 
-                            onClick={newStoryMode}
+                            onClick={() => storyMode('new')}
                         >
                             Novo Modo História
                         </Button>
                     </Grid>
                     <Grid container spacing={2} justify="center">
-                        <Link to="/story-mode">
-                            <Button
-                                size="large" 
-                                color="primary" 
-                                disabled={
-                                    // Havendo cookie, há opção de continuar história
-                                    String(Cookies.get('storyNumber')) !== 'undefined' ? false : true
-                                } 
-                            >
-                                Continuar História
-                            </Button>
-                        </Link>
+                        <Button
+                            size="large" 
+                            color="primary" 
+                            onClick={() => storyMode('continue')}
+                            disabled={
+                                // Havendo cookie, há opção de continuar história
+                                String(Cookies.get('storyNumber')) !== 'undefined' ? false : true
+                            } 
+                        >
+                            Continuar História
+                        </Button>
                     </Grid>
                     <Grid container spacing={2} justify="center">
-                        <Link to="/battle-mode">
+                        <a href="/battle-mode">
                             <Button
                                 size="large" 
                                 color="primary" 
                             >
                                 Modo Batalha
                             </Button>
-                        </Link>
+                        </a>
                     </Grid>
                     <Grid container spacing={2} justify="center">
                         <Link to="/howto">

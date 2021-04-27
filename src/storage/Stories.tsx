@@ -3,7 +3,7 @@ const Story = [
         id: "part1",
         text: '"Há um ano."',
     },{
-        text: '"Devido a problemas na rede saneamento básico a população recebe água com altos níveis de geosmina. Segundo as autoridades, não é nocivo a saúde."',
+        text: '"Devido a problemas na rede de saneamento básico a população recebe água com altos níveis de geosmina. Segundo as autoridades, não é nocivo a saúde."',
     },{
         textImg: 'img/story/doctor.jpg',
         text: '"Entretanto, a três dias, médicos relatam receber pacientes graves, informando ter passado mal depois de beber a água mesmo filtrada."',
@@ -87,7 +87,7 @@ const Story = [
         text: '[Uma grande explosão acontece! E uma nova batalha se inicia!]',
         callBattle: 4
     },{
-        id: 'bad-engind',
+        id: 'bad-ending',
         text: '"NÃO!"'
     },{
         text: '[Adriana abraça seu monstrinho enquanto o oponente prepara um último golpe.]'
@@ -97,7 +97,7 @@ const Story = [
         text: '[[[ FIM DE JOGO. Tente novamente. ]]]',
         endingGame: true
     },{
-        id: 'good-engind',
+        id: 'good-ending',
         text: '"Vencemos! Estamos a salvos!"'
     },{
         text: '[Ambos os monstros, após o último ataque, interrompem a batalha.]'
@@ -130,14 +130,16 @@ const Story = [
     },{
         text: '[Dias depois.]'
     },{
-        text: '"Você tem certeza que quer me acompanhar? ...Ha ha, tudo bem! ...Mas dessa vez teremos mais cuidados. Não quero te ver no hospital novamente. As autoridades ignoraram a nossa história, o jornal me proibiu de continuar com essa investigação temendo o nosso pior. Mas uma boa jornalista não corre da notícia."'
+        text: '"Você tem certeza que quer me acompanhar? ...Ha ha, tudo bem! ...Mas dessa vez teremos mais cuidados. Não quero te ver no hospital novamente."'
     },{
-        text: '"Vamos, dessa vez, nós iremos até o fim!"'
+        text: '"As autoridades ignoraram a nossa história e o jornal me proibiu de continuar com essa investigação temendo o nosso pior. Mas uma boa jornalista não corre da notícia."'
+    },{
+        text: '"Vamos! Dessa vez, nós iremos descobrir tudo o que está acontecendo."'
     },{
         text: '[[[ PARABÉNS! VOCÊ FINALIZOU O JOGO! Jogue novamente e tente alcançar o final secreto! Até mais! ]]]',
         endingGame: true
     },{
-        id: 'secret-engind',
+        id: 'secret-ending',
         text: '[Adriana e seu monstrinho lutam bravamente! Mas são atingidos por um poderoso ataque! Ambos caem muito feridos no chão.]'
     },{
         text: '"Ele é forte demais..."'

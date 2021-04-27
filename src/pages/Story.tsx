@@ -46,7 +46,7 @@ export default function Story() {
 
             Cookies.set('opponentMonsterNumber', String(storyStorage[storyNumber]['callBattle'])); // Número da batalha
             Cookies.set('storyNumber', String(storyNumber)); // Guarda onde a história parou
-            history.push('/story-battle');
+            window.location.href = '/story-battle';
         }else{ // Próximo trecho da história
             setText('');
             setNumberLetter(-1); // "-1" Elimina o primeiro caracter quando inicia o texto

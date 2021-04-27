@@ -1,10 +1,17 @@
-# Projeto
+# React Battle Monster
 
-## https://react-battle-monster.herokuapp.com/
+![Game](docs/img/game.png)
 
-![Landing](docs/img/landing.jpg)
+É um pequeno jogo de batalhas por turnos escrito unicamente com ReactJS.
 
-![Battle](docs/img/battle.jpg)
+Possui:
+
+- Modo Batalha;
+- Modo História (com três finais possíveis: ruim, bom e secreto).
+
+Para conhecer e jogar, acesse: https://react-battle-monster.herokuapp.com/.
+
+(As telas são responsivas, portanto, sinta-se a vontade para jogar em qualquer dispositivo).
 
 # Projeto
 
@@ -17,21 +24,15 @@
 - yarn add js-cookie
 - yarn add @types/js-cookie -D
 
-# Tarefas
+# Lista de Tarefas
 
 [x] Mecânica de Batalhas <br/>
 [x] Quadros de exibição das informações das batalhas <br/> 
-[x] Lista de personagens <br/>
 [x] Items <br/>
-[x] Batalhas em sequencia <br/>
-[x] Condições de vitórias e derrotas <br/>
 [x] Informações das mecânicas do jogo <br/>
-[x] Créditos <br/>
 [x] História <br/>
-[x] Quadros da história <br/>
-[ ] Efeitos de transição entre as histórias e batalhas <br/>
+[x] Múltiplos finais possíveis <br/>
+[x] Créditos <br/>
+[ ] Mensagens de vencedor das batalhas <br/>
 [ ] Sons <br/>
-[x] Rever design de telas <br/>
-[x] Melhorar textos de mecânicas do jogo <br/>
-[ ] <s>Instrução para deitar o celular quando acessando por um smartphone</s><br/>
 [ ] <s>Testes</s> <br/>
