@@ -1,8 +1,8 @@
 export const yourMonsterStorage = [
     {
         id: 'inicial',
-        name: "YourMonster",
-        monsterImg: "img/no-image.jpg",
+        name: "Squirtle",
+        monsterImg: "img/monsters/squirtle.jpg",
         attack: 3, 
         attackChance: 0, 
         defense: 3, 
@@ -23,8 +23,8 @@ export const yourMonsterStorage = [
 export const opponentMonsterStorage = [
     {
         id: 'opponent1',
-        name: "OpponentMonster",
-        monsterImg: "img/no-image.jpg",
+        name: "Weezing",
+        monsterImg: "img/monsters/weezing.jpg",
         attack: 3, 
         attackChance: 0, 
         defense: 3, 
