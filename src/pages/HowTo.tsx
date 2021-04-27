@@ -70,13 +70,13 @@ export default function HowTo() {
                                 utilizou de poder de ataque e defesa, se algum item foi utilizado e quem venceu).</li>
                                 <li>A terceira exibe informações do seu adversário.</li> <br />
                                 <Grid container spacing={2} justify="center">
-                                    <img src="/img/howto/boxes.jpg" alt="Boxes"/> 
+                                    <img src="/img/howto/boxes.jpg" alt="Boxes" width="90%"/> 
                                 </Grid>
                                 <br />
                                 Você sempre estará no comando dos turnos, efetuando uma ordem de ataque ou de defesa. <br />
                                 Por turno, sempre haverá um monstro atacando e um defendendo. <br /><br />
                                 <Grid container spacing={2} justify="center">
-                                    <img src="/img/howto/attack-defense.jpg" alt="AttackDefense" /> 
+                                    <img src="/img/howto/attack-defense.jpg" alt="AttackDefense" width="90%"/> 
                                 </Grid>
                                 <br />
                                 Seu personagem e o seu adversário possuem três características básicas. <br />
