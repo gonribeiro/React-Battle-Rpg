@@ -1,4 +1,4 @@
-# React Battle Monster
+# React Battle Rpg
 
 ![Game](docs/img/game.png)
 

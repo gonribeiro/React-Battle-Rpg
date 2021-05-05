@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 
 import { Paper, Grid, Typography, Fab, CardMedia } from '@material-ui/core';
 import FastForwardIcon from '@material-ui/icons/FastForward';
+import SkipNextIcon from '@material-ui/icons/SkipNext';
 
 import BackUrl from '../utils/BackUrl';
 
@@ -13,45 +14,43 @@ export default function Story() {
     const history = useHistory();
     const [text, setText] = useState(String);
     const [numberLetter, setNumberLetter] = useState(0);
-    const [storyNumber, setStoryNumber] = useState(
-        String(Cookies.get('storyNumber')) !== 'undefined'
-        ? Number(Cookies.get('storyNumber')) // Retorna onde história parou
-        : 0 // Início da história
-    );
+    const [storyNumber, setStoryNumber] = useState(Number(Cookies.get('storyNumber')));
 
     useEffect(() => {
-        if (numberLetter < storyStorage[storyNumber]['text'].length) { // Escreve o texto pausadamente, letra por letra 
+        if (numberLetter < storyStorage[storyNumber]['text'].length) { // Escreve o texto pausadamente
             setText(text + storyStorage[storyNumber]['text'].charAt(numberLetter)); // Adiciona a próxima letra ao texto
             setTimeout(() => {
                 setNumberLetter(numberLetter + 1);
-            }, 15)
+            }, 45)
         }
     }, [numberLetter]);
 
-    function advanceTheStory() {
-        // Fim do jogo
-        if(Boolean(storyStorage[storyNumber]['endingGame']) === true){
-            Cookies.remove('yourMonsterNumber');
-            Cookies.remove('storyNumber');
-            history.push('/');
-            return;
+    function continueStory() {
+        if (Boolean(storyStorage[storyNumber]['endingGame']) === true) {
+            endGame();
         }
         
-        if(String(storyStorage[storyNumber]['callBattle']) !== 'undefined'){ // Chama a batalha da história
-            if (storyNumber !== 35) { // Segue luta com inicial
-                Cookies.set('yourMonsterNumber', String(0));
-            } else { // Ultima chance para final bom
-                Cookies.set('yourMonsterNumber', String(1)); 
-            }
-
-            Cookies.set('opponentMonsterNumber', String(storyStorage[storyNumber]['callBattle'])); // Número da batalha
-            Cookies.set('storyNumber', String(storyNumber)); // Guarda onde a história parou
-            window.location.href = '/story-battle';
-        }else{ // Próximo trecho da história
+        if (String(storyStorage[storyNumber]['callBattle']) !== 'undefined') {
+            callBattle();
+        } else { // Próximo trecho da história
             setText('');
             setNumberLetter(-1); // "-1" Elimina o primeiro caracter quando inicia o texto
             setStoryNumber(storyNumber + 1);
         }
+    }
+
+    function callBattle() {
+        if (String(Cookies.get('yourMonsterNumber')) === 'undefined') { // Se ultima batalha houve derrota, encerra jogo
+            endGame();
+            return;
+        }
+
+        window.location.href = '/story-battle';
+    }
+
+    function endGame() {
+        Cookies.remove('storyNumber');
+        history.push('/');
     }
 
     return (
@@ -65,7 +64,7 @@ export default function Story() {
                 style={{
                     margin: 'auto', 
                     maxWidth: 990, 
-                    minHeight: window.innerHeight - 40, 
+                    minHeight: window.innerHeight - 40,
                 }}
             >
                 { storyStorage[storyNumber]['textImg'] ? (
@@ -93,10 +92,14 @@ export default function Story() {
                 </Grid>
                 <Grid item xs={12}>
                     { numberLetter === storyStorage[storyNumber]['text'].length ? (
-                        <Fab size="small" variant="extended" onClick={advanceTheStory}>
-                            <FastForwardIcon />
+                        <Fab size="medium" color="primary" variant="extended" onClick={continueStory}>
+                            Prosseguir <FastForwardIcon />
                         </Fab>
-                    ) : (<div></div>)}
+                    ) : (
+                        <Fab size="medium" color="secondary" variant="extended" onClick={callBattle}>
+                            Ignorar história <SkipNextIcon />
+                        </Fab>
+                    )}
                 </Grid>
             </Grid>
             <BackUrl />

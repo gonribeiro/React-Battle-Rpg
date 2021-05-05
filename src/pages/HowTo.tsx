@@ -50,7 +50,7 @@ export default function HowTo() {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography className={classes.text}>
-                                React Battle Monster é um jogo de batalhas por turnos escrito em ReactJS. <br /><br />
+                                React Battle Rpg é um jogo de batalhas por turnos escrito em ReactJS. <br /><br />
                                 Possui um modo história e um modo batalha, ambos com um número limitado de batalhas. <br />
                                 O modo história possui três finais possíveis (bom, ruim e secreto).
                             </Typography>
@@ -110,7 +110,7 @@ export default function HowTo() {
                         <AccordionDetails>
                             <Typography className={classes.text}>
                                 No início do jogo você possui quatro itens de dois tipos: <br />
-                                <li>Duas unidades de Cura (quando utilizado, seu personagem fica com 6 de HP).</li>
+                                <li>Duas unidades de Cura (quando utilizado, seu personagem tem a vida restaurada).</li>
                                 <li>Duas unidades de Aumentar Ataque (quando utilizado, seu personagem recebe + 3 de ataque).</li> <br />
                                 <Grid container spacing={2} justify="center">
                                     <img src="/img/howto/itens.jpg" alt="Itens"/> 

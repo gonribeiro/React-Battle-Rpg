@@ -10,16 +10,15 @@ export default function Landing() {
     const history = useHistory();
 
     function storyMode(mode: String) {
-        if (mode === 'new') {
-            Cookies.remove('opponentMonsterNumber');
-            Cookies.remove('yourMonsterNumber');
-            Cookies.remove('storyNumber');
+        if (mode === 'new-game') { // Parâmetros para novo jogo do modo história
+            Cookies.set('opponentMonsterNumber', String(0));
+            Cookies.set('yourMonsterNumber', String(0));
+            Cookies.set('storyNumber', String(0));
             Cookies.set('remedy', String(2));
             Cookies.set('maximumPower', String(2));
         }
         
         history.push('/story-mode');
-        return;
     }
 
     return (
@@ -49,7 +48,7 @@ export default function Landing() {
                         <Button
                             size="large" 
                             color="primary" 
-                            onClick={() => storyMode('new')}
+                            onClick={() => storyMode('new-game')}
                         >
                             Novo Modo História
                         </Button>
@@ -89,7 +88,7 @@ export default function Landing() {
                     </Grid>
                     <Grid container spacing={2} justify="center">
                         <a 
-                            href="https://github.com/gonribeiro/BattleMonsterReact" 
+                            href="https://github.com/gonribeiro/React-Battle-Rpg" 
                             target="_blank" 
                             rel="noopener noreferrer"
                         >
