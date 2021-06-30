@@ -1,6 +1,20 @@
-# React Battle Monster
+<h1 align="center">
+    React Battle Rpg
+    <br />
+    <a href="https://react-battle-monster.herokuapp.com/" target="_blank">https://react-battle-monster.herokuapp.com/</a>
+</h1>
 
-![Game](docs/img/game.png)
+<p align="center">
+  <img  src="https://img.shields.io/static/v1?label=license&message=MIT&color=orange&labelColor=121214" alt="License">
+
+  <img src="https://img.shields.io/github/forks/gonribeiro/React-Battle-Rpg?label=forks&message=MIT&color=orange&labelColor=121214" alt="Forks">
+
+  <img src="https://img.shields.io/github/stars/gonribeiro/React-Battle-Rpg?label=stars&message=MIT&color=orange&labelColor=121214" alt="Stars">
+</p>
+
+![Game](.github/game.png)
+
+## 🎮 O Jogo
 
 É um pequeno jogo de batalhas por turnos escrito unicamente com ReactJS.
 
@@ -13,26 +27,41 @@ Para conhecer e jogar, acesse: https://react-battle-monster.herokuapp.com/.
 
 (As telas são responsivas, portanto, sinta-se a vontade para jogar em qualquer dispositivo).
 
-# Projeto
+## 🧪 Tecnologias
 
-- yarn create react-app . --template typescript
-- yarn add react-router-dom
-- yarn add @types/react-router-dom
-- yarn add @material-ui/core
-- yarn add @types/material-ui
-- yarn add @material-ui/icons
-- yarn add js-cookie
-- yarn add @types/js-cookie -D
+Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 
-# Lista de Tarefas
+- [React](https://reactjs.org)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Material-UI](https://material-ui.com/)
 
-[x] Mecânica de Batalhas <br/>
-[x] Quadros de exibição das informações das batalhas <br/> 
-[x] Items <br/>
-[x] Informações das mecânicas do jogo <br/>
-[x] História <br/>
-[x] Múltiplos finais possíveis <br/>
-[x] Créditos <br/>
-[ ] Mensagens de vencedor das batalhas <br/>
-[ ] Sons <br/>
-[ ] <s>Testes</s> <br/>
+## 🚀 Começando
+
+Clone o projeto e acesse a pasta.
+
+```bash
+$ git clone https://github.com/gonribeiro/React-Battle-Rpg
+$ cd React-Battle-Rpg
+```
+
+Siga os passos abaixo:
+```bash
+# Instale as dependências
+$ yarn
+# Inicie o projeto
+$ yarn start
+```
+O aplicativo estará disponível para acesso em seu navegador em http://localhost:3000
+
+## 📝 Licença
+
+Este projeto está licenciado sob a Licença MIT. Veja o arquivo de [LICENÇA](LICENSE.md) para detalhes
+
+## 🎲 Pacotes utilizados
+
+- react-router-dom @types/react-router-dom
+- @material-ui/core @material-ui/icons @types/material-ui
+- js-cookie @types/js-cookie -D
+
+---
+<p align="center">História e Jogo criado por 💜 Tiago Ribeiro</p>

@@ -24,7 +24,7 @@ export default function Story() {
             setText(text + storyStorage[storyNumber]['text'].charAt(numberLetter)); // Adiciona a próxima letra ao texto
             setTimeout(() => {
                 setNumberLetter(numberLetter + 1);
-            }, 15)
+            }, 75)
         }
     }, [numberLetter]);
 
