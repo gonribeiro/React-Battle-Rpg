@@ -32,55 +32,55 @@ export default function Landing() {
                 width: "100%",
             }}
         >
-            <Grid 
+            <Grid
                 container
                 direction="row"
                 justify="center"
                 alignItems="center"
                 style={{
-                    margin: "auto", 
-                    maxWidth: 990, 
-                    minHeight: window.innerHeight - 40, 
+                    margin: "auto",
+                    maxWidth: 990,
+                    minHeight: window.innerHeight - 40,
                 }}
             >
                 <Paper className="paper">
                     <Grid container spacing={2} justify="center">
                         <Button
-                            size="large" 
-                            color="primary" 
-                            onClick={() => storyMode('new-game')}
-                        >
-                            Novo Modo História
-                        </Button>
-                    </Grid>
-                    <Grid container spacing={2} justify="center">
-                        <Button
-                            size="large" 
-                            color="primary" 
+                            size="large"
+                            color="primary"
                             onClick={() => storyMode('continue')}
                             disabled={
                                 // Havendo cookie, há opção de continuar história
                                 String(Cookies.get('storyNumber')) !== 'undefined' ? false : true
-                            } 
+                            }
                         >
-                            Continuar História
+                            Continuar
+                        </Button>
+                    </Grid>
+                    <Grid container spacing={2} justify="center">
+                        <Button
+                            size="large"
+                            color="primary"
+                            onClick={() => storyMode('new-game')}
+                        >
+                            Novo Jogo
                         </Button>
                     </Grid>
                     <Grid container spacing={2} justify="center">
                         <a href="/battle-mode">
                             <Button
-                                size="large" 
-                                color="primary" 
+                                size="large"
+                                color="primary"
                             >
-                                Modo Batalha
+                                Treinar
                             </Button>
                         </a>
                     </Grid>
                     <Grid container spacing={2} justify="center">
                         <Link to="/howto">
                             <Button
-                                size="large" 
-                                color="primary" 
+                                size="large"
+                                color="primary"
                             >
                                 Mecânicas do Jogo
                             </Button>
@@ -88,15 +88,15 @@ export default function Landing() {
                     </Grid>
                     <Grid container spacing={2} justify="center">
                         <a 
-                            href="https://github.com/gonribeiro/React-Battle-Rpg" 
-                            target="_blank" 
+                            href="https://github.com/gonribeiro/React-Battle-Rpg"
+                            target="_blank"
                             rel="noopener noreferrer"
                         >
                             <Button
-                                size="large" 
-                                color="primary" 
+                                size="large"
+                                color="primary"
                             >
-                                <GitHubIcon />
+                                <GitHubIcon /> &nbsp; Github
                             </Button>
                         </a>
                     </Grid>

@@ -55,15 +55,15 @@ export default function Story() {
 
     return (
         <Fragment>
-            <Grid 
+            <Grid
                 container
                 direction="column"
                 justify="center"
                 alignItems="center"
                 spacing={3}
                 style={{
-                    margin: 'auto', 
-                    maxWidth: 990, 
+                    margin: 'auto',
+                    maxWidth: 990,
                     minHeight: window.innerHeight - 40,
                 }}
             >
@@ -80,7 +80,7 @@ export default function Story() {
                 ) : (<div></div>)}
                 <Grid item xs={12}>
                     <Paper className="paper">
-                        <Typography 
+                        <Typography
                             style={{
                                 fontSize: 15,
                                 margin: 5

@@ -143,16 +143,14 @@ export default function Match() {
         }
 
         // Modo batalha
-        if (opponentMonster.life <= 0 && opponentMonster.id !== 'boss1') {
+        if (opponentMonster.life <= 0) {
             setBattleSituation(attackerName + ' venceu!');
-            setOpponentMonsterNumber(opponentMonsterNumber + 1);
+
+            if (opponentMonsterNumber !== 4) {
+                setOpponentMonsterNumber(opponentMonsterNumber + 1);
+            }
+
             setTurn(true);
-        } else if (yourMonster.life <= 0 && opponentMonster.id === 'boss1' && yourMonster.id === 'inicial') {
-            setYourMonster({
-                ...yourMonsterStorage[1], // monstrinho final
-                remedy: yourMonster.remedy,
-                maximumPower: yourMonster.maximumPower
-            });
         } else {
             setBattleSituation(attackerName + ' venceu! Fim de jogo.');
         }
@@ -169,14 +167,14 @@ export default function Match() {
                 width: "100%",
             }}
         >
-            <Grid 
+            <Grid
                 container
                 direction="row"
                 justify="space-between"
                 alignItems="center"
                 style={{
-                    margin: 'auto', 
-                    maxWidth: 990, 
+                    margin: 'auto',
+                    maxWidth: 990,
                     minHeight: window.innerHeight - 40,
                 }}
             >
@@ -205,7 +203,7 @@ export default function Match() {
                     </Card>
                 </Grid>
                 <Grid item xs={12} sm={3}>
-                    <Fighter 
+                    <Fighter
                         monster={opponentMonster}
                     />
                 </Grid>
