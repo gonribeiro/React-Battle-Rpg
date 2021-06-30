@@ -62,10 +62,19 @@ const Fighter: React.FC<MonsterProps> = (props) => {
                         color="primary" 
                         variant="extended" 
                         onClick={props.fight}
+                        style={{
+                            marginRight: "15px"
+                        }}
                     >
                         {props.turn ? 'Ataque!' : 'Defenda!'}
                     </Fab>
-                    <Tooltip title="CURA!" placement="top">
+                    <Tooltip 
+                        title="CURAR!" 
+                        placement="top"
+                        style={{
+                            marginRight: "15px"
+                        }}
+                    >
                         <Fab 
                             size="small" 
                             color="primary" 
