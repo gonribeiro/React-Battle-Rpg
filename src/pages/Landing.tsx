@@ -16,7 +16,6 @@ export default function Landing() {
             Cookies.set('storyNumber', String(0));
             Cookies.set('remedy', String(2));
             Cookies.set('maximumPower', String(2));
-
         }
 
         history.push('/'+mode);
@@ -45,19 +44,20 @@ export default function Landing() {
                 }}
             >
                 <Paper className="paper">
-                    {/* <Grid container spacing={2} justify="center">
-                        <Button
-                            size="large"
-                            color="primary"
-                            onClick={() => newGame('continue')}
-                            disabled={
-                                // Havendo cookie, há opção de continuar história
-                                String(Cookies.get('storyNumber')) !== 'undefined' ? false : true
-                            }
-                        >
-                            Continuar
-                        </Button>
-                    </Grid> */}
+                    <Grid container spacing={2} justify="center">
+                        <Link to="/story-mode">
+                            <Button
+                                size="large"
+                                color="primary"
+                                disabled={
+                                    // Havendo cookie, há opção de continuar história
+                                    String(Cookies.get('storyNumber')) !== 'undefined' ? false : true
+                                }
+                            >
+                                Continuar História
+                            </Button>
+                        </Link>
+                    </Grid>
                     <Grid container spacing={2} justify="center">
                         <Button
                             size="large"
