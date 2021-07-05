@@ -9,16 +9,17 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 export default function Landing() {
     const history = useHistory();
 
-    function storyMode(mode: String) {
-        if (mode === 'new-game') { // Parâmetros para novo jogo do modo história
+    function newGame(mode: String) {
+        if (mode === 'story-mode') { // Parâmetros para novo jogo do modo história
             Cookies.set('opponentMonsterNumber', String(0));
             Cookies.set('yourMonsterNumber', String(0));
             Cookies.set('storyNumber', String(0));
             Cookies.set('remedy', String(2));
             Cookies.set('maximumPower', String(2));
+
         }
-        
-        history.push('/story-mode');
+
+        history.push('/'+mode);
     }
 
     return (
@@ -44,11 +45,11 @@ export default function Landing() {
                 }}
             >
                 <Paper className="paper">
-                    <Grid container spacing={2} justify="center">
+                    {/* <Grid container spacing={2} justify="center">
                         <Button
                             size="large"
                             color="primary"
-                            onClick={() => storyMode('continue')}
+                            onClick={() => newGame('continue')}
                             disabled={
                                 // Havendo cookie, há opção de continuar história
                                 String(Cookies.get('storyNumber')) !== 'undefined' ? false : true
@@ -56,25 +57,34 @@ export default function Landing() {
                         >
                             Continuar
                         </Button>
-                    </Grid>
+                    </Grid> */}
                     <Grid container spacing={2} justify="center">
                         <Button
                             size="large"
                             color="primary"
-                            onClick={() => storyMode('new-game')}
+                            onClick={() => newGame('story-mode')}
                         >
-                            Novo Jogo
+                            Modo História
                         </Button>
                     </Grid>
-                    <Grid container spacing={2} justify="center">
+                    {/* <Grid container spacing={2} justify="center">
                         <a href="/battle-mode">
                             <Button
                                 size="large"
                                 color="primary"
                             >
-                                Treinar
+                                Batalhar On-Line
                             </Button>
                         </a>
+                    </Grid> */}
+                    <Grid container spacing={2} justify="center">
+                        <Button
+                            size="large"
+                            color="primary"
+                            onClick={() => newGame('battle-mode')}
+                        >
+                            Treinar
+                        </Button>
                     </Grid>
                     <Grid container spacing={2} justify="center">
                         <Link to="/howto">

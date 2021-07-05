@@ -45,7 +45,7 @@ export default function Story() {
             return;
         }
 
-        window.location.href = '/story-battle';
+        history.push('/story-battle');
     }
 
     function endGame() {

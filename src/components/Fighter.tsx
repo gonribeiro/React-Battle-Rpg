@@ -1,10 +1,10 @@
-import { 
-    Card, 
-    CardActionArea, 
-    CardContent, 
-    CardMedia, 
-    Typography, 
-    CardActions, 
+import {
+    Card,
+    CardActionArea,
+    CardContent,
+    CardMedia,
+    Typography,
+    CardActions,
     Tooltip,
     Fab
 } from '@material-ui/core';
@@ -12,27 +12,27 @@ import {
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import OfflineBoltOutlinedIcon from '@material-ui/icons/OfflineBoltOutlined';
 
-interface MonsterProps {
+type FighterProps = {
     monster: {
         id: string;
         name: string;
         attack: number;
-        attackChance: number;
         defense: number;
-        defenseChance: number;
         life: number;
         monsterImg: string;
-        remedy?: number;
-        maximumPower?: number;
+    };
+    yourItens?: {
+        remedy: number;
+        maximumPower: number;
     };
     commandFighter?: boolean;
     turn?: boolean;
-    fight?: any;
-    useItem?: any;
+    fight?: () => void;
+    useItem?: any; //@todo corrigir
     opponentMonsterLife?: number;
 }
 
-const Fighter: React.FC<MonsterProps> = (props) => {
+const Fighter: React.FC<FighterProps> = (props) => {
     return (
         <div>
             <Card>
@@ -48,8 +48,8 @@ const Fighter: React.FC<MonsterProps> = (props) => {
                             {props.monster.name}
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
-                            {props.monster.life >= 0 ? props.monster.life : '0'} HP 
-                            • {props.monster.attack} Ataque 
+                            {props.monster.life >= 0 ? props.monster.life : '0'} HP
+                            • {props.monster.attack} Ataque
                             • {props.monster.defense} Defesa
                         </Typography>
                     </CardContent>
@@ -57,10 +57,10 @@ const Fighter: React.FC<MonsterProps> = (props) => {
             </Card>
             { props.commandFighter && props.opponentMonsterLife! > 0 && props.monster.life > 0 ? (
                 <CardActions>
-                    <Fab 
-                        size="small" 
-                        color="primary" 
-                        variant="extended" 
+                    <Fab
+                        size="small"
+                        color="primary"
+                        variant="extended"
                         onClick={props.fight}
                         style={{
                             marginRight: "15px"
@@ -68,30 +68,30 @@ const Fighter: React.FC<MonsterProps> = (props) => {
                     >
                         {props.turn ? 'Ataque!' : 'Defenda!'}
                     </Fab>
-                    <Tooltip 
-                        title="CURAR!" 
+                    <Tooltip
+                        title="CURAR!"
                         placement="top"
                         style={{
                             marginRight: "15px"
                         }}
                     >
-                        <Fab 
-                            size="small" 
-                            color="primary" 
-                            variant="extended" 
-                            onClick={() => props.useItem('remedy')} 
+                        <Fab
+                            size="small"
+                            color="primary"
+                            variant="extended"
+                            onClick={() => props.useItem('remedy')}
                         >
-                            {props.monster.remedy} <FavoriteBorderIcon fontSize="small"/>  
+                            {props.yourItens!.remedy} <FavoriteBorderIcon fontSize="small"/>
                         </Fab>
                     </Tooltip>
                     <Tooltip title="AUMENTAR ATAQUE!" placement="top">
-                        <Fab 
-                            size="small" 
-                            color="primary" 
-                            variant="extended" 
+                        <Fab
+                            size="small"
+                            color="primary"
+                            variant="extended"
                             onClick={() => props.useItem('maximumPower')}
                         >
-                            {props.monster.maximumPower} <OfflineBoltOutlinedIcon fontSize="small"/> 
+                            {props.yourItens!.maximumPower} <OfflineBoltOutlinedIcon fontSize="small"/>
                         </Fab>
                     </Tooltip>
                 </CardActions>
