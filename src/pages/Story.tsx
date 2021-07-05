@@ -26,7 +26,7 @@ export default function Story() {
     }, [numberLetter]);
 
     function continueStory() {
-        if (Boolean(storyStorage[storyNumber]['endingGame']) === true) {
+        if (Boolean(storyStorage[storyNumber]['endingGame'])) {
             endGame();
         }
         
@@ -40,7 +40,8 @@ export default function Story() {
     }
 
     function callBattle() {
-        if (String(Cookies.get('yourMonsterNumber')) === 'undefined') { // Se ultima batalha houve derrota, encerra jogo
+        // Se ultima batalha houve derrota, encerra jogo
+        if (String(Cookies.get('yourMonsterNumber')) === 'undefined') {
             endGame();
             return;
         }

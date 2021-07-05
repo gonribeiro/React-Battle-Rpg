@@ -34,7 +34,7 @@ type FighterProps = {
 
 const Fighter: React.FC<FighterProps> = (props) => {
     return (
-        <div>
+        <>
             <Card>
                 <CardActionArea>
                     <CardMedia
@@ -95,8 +95,8 @@ const Fighter: React.FC<FighterProps> = (props) => {
                         </Fab>
                     </Tooltip>
                 </CardActions>
-            ) : (<div></div>)}
-        </div>
+            ) : (<></>)}
+        </>
     )
 }
 

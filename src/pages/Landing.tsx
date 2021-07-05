@@ -81,7 +81,7 @@ export default function Landing() {
                         <Button
                             size="large"
                             color="primary"
-                            onClick={() => newGame('battle-mode')}
+                            onClick={() => newGame('treining')}
                         >
                             Treinar
                         </Button>

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import Cookies from 'js-cookie';
 
-import { Grid, Card, CardActionArea, CardContent, Typography } from '@material-ui/core';
+import { Grid, Card, CardActionArea, CardContent, Typography, Fab } from '@material-ui/core';
 
 import Fighter from "../components/Fighter";
 import BackUrl from '../utils/BackUrl';
@@ -109,11 +109,11 @@ export default function Match() {
         // Modo história
         if (locationUrl === '/story-battle') { 
             if (opponentMonster.life <= 0 && opponentMonster.id !== 'boss1') { // Próxima história
-                let nextStory = storyStorage.findIndex(x => x.callBattle === Number(Cookies.get('opponentMonsterNumber'))) + 1;
-                Cookies.set('storyNumber', String(nextStory));
+                Cookies.set('storyNumber', String(
+                    storyStorage.findIndex(x => x.callBattle === Number(Cookies.get('opponentMonsterNumber'))) + 1
+                ));
 
-                let nextBattle = Number(Cookies.get('opponentMonsterNumber')) + 1;
-                Cookies.set('opponentMonsterNumber', String(nextBattle));
+                Cookies.set('opponentMonsterNumber', String(Number(Cookies.get('opponentMonsterNumber')) + 1));
             } else if (yourMonster.life <= 0 && opponentMonster.id === 'boss1' && yourMonster.id === 'inicial') { // Ultima chance
                 Cookies.set('storyNumber', String(storyStorage.findIndex(x => x.id === 'part5')));
 
@@ -184,8 +184,36 @@ export default function Match() {
                         <CardActionArea>
                             <CardContent>
                                 <Typography color="textSecondary" variant="h6" component="p" align="center">
-                                    {battleSituation} <br /><br />
+                                    {battleSituation} <br />
                                 </Typography>
+                                {
+                                    yourMonster.life <= 0 || opponentMonster.life <= 0 ?
+                                    (<>
+                                        <Typography variant="body2" align="center">
+                                            <br />
+                                            <Fab
+                                                size="small"
+                                                color="primary"
+                                                variant="extended"
+                                                onClick={() => setOpponentMonsterNumber(0)}
+                                            >
+                                                Tentar Novamente
+                                                </Fab>
+                                            <br /><br />
+                                            <Link to="/">
+                                                <Fab
+                                                    size="small"
+                                                    color="secondary"
+                                                    variant="extended"
+                                                >
+                                                    Encerrar
+                                                </Fab>
+                                            </Link>
+                                            <br /><br />
+                                        </Typography>
+                                    </>
+                                    ) : (<></>)
+                                }
                                 <Typography variant="body2" align="center">
                                     {battleStatus}
                                 </Typography>
