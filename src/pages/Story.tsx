@@ -1,6 +1,6 @@
 import { Fragment, useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
-import Cookies from 'js-cookie';
+import { useStory } from '../hooks/useStory';
 
 import { Paper, Grid, Typography, Fab, CardMedia } from '@material-ui/core';
 import FastForwardIcon from '@material-ui/icons/FastForward';
@@ -12,13 +12,14 @@ import storyStorage from '../storage/Stories';
 
 export default function Story() {
     const history = useHistory();
+    const { storyValue, updateStoryValue } = useStory();
+
     const [text, setText] = useState(String);
     const [numberLetter, setNumberLetter] = useState(0);
-    const [storyNumber, setStoryNumber] = useState(Number(Cookies.get('storyNumber')));
 
     useEffect(() => {
-        if (numberLetter < storyStorage[storyNumber]['text'].length) { // Escreve o texto pausadamente
-            setText(text + storyStorage[storyNumber]['text'].charAt(numberLetter)); // Adiciona a próxima letra ao texto
+        if (numberLetter < storyStorage[storyValue.storyNumber]['text'].length) { // Escreve o texto pausadamente
+            setText(text + storyStorage[storyValue.storyNumber]['text'].charAt(numberLetter)); // Adiciona a próxima letra ao texto
             setTimeout(() => {
                 setNumberLetter(numberLetter + 1);
             }, 70)
@@ -26,22 +27,23 @@ export default function Story() {
     }, [numberLetter]);
 
     function continueStory() {
-        if (Boolean(storyStorage[storyNumber]['endingGame'])) {
+        if (storyStorage[storyValue.storyNumber]['endingGame']) {
+            updateStoryValue({...storyValue, inGame: false });
             endGame();
         }
         
-        if (String(storyStorage[storyNumber]['callBattle']) !== 'undefined') {
+        if (String(storyStorage[storyValue.storyNumber]['callBattle']) !== 'undefined') {
             callBattle();
         } else { // Próximo trecho da história
             setText('');
             setNumberLetter(-1); // "-1" Elimina o primeiro caracter quando inicia o texto
-            setStoryNumber(storyNumber + 1);
+            updateStoryValue({...storyValue, storyNumber: storyValue.storyNumber + 1});
         }
     }
 
     function callBattle() {
         // Se ultima batalha houve derrota, encerra jogo
-        if (String(Cookies.get('yourMonsterNumber')) === 'undefined') {
+        if (!storyValue.inGame) {
             endGame();
             return;
         }
@@ -50,7 +52,6 @@ export default function Story() {
     }
 
     function endGame() {
-        Cookies.remove('storyNumber');
         history.push('/');
     }
 
@@ -68,13 +69,13 @@ export default function Story() {
                     minHeight: window.innerHeight - 40,
                 }}
             >
-                { storyStorage[storyNumber]['textImg'] ? (
+                { storyStorage[storyValue.storyNumber]['textImg'] ? (
                     <div>
                         <Grid item xs={12}>
                             <CardMedia
                                 component="img"
                                 height="140"
-                                image={storyStorage[storyNumber]['textImg']}
+                                image={storyStorage[storyValue.storyNumber]['textImg']}
                             />
                         </Grid>
                     </div>
@@ -92,7 +93,7 @@ export default function Story() {
                     </Paper>
                 </Grid>
                 <Grid item xs={12}>
-                    { numberLetter === storyStorage[storyNumber]['text'].length ? (
+                    { numberLetter === storyStorage[storyValue.storyNumber]['text'].length ? (
                         <Fab size="medium" color="primary" variant="extended" onClick={continueStory}>
                             Prosseguir <FastForwardIcon />
                         </Fab>

@@ -62,6 +62,7 @@ Este projeto está licenciado sob a Licença MIT. Veja o arquivo de [LICENÇA](L
 - react-router-dom @types/react-router-dom
 - @material-ui/core @material-ui/icons @types/material-ui
 - js-cookie @types/js-cookie -D
+- firebase
 
 ---
 <p align="center">História e Jogo criado por 💜 Tiago Ribeiro</p>

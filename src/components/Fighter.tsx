@@ -5,7 +5,6 @@ import {
     CardMedia,
     Typography,
     CardActions,
-    Tooltip,
     Fab
 } from '@material-ui/core';
 
@@ -68,32 +67,25 @@ const Fighter: React.FC<FighterProps> = (props) => {
                     >
                         {props.turn ? 'Ataque!' : 'Defenda!'}
                     </Fab>
-                    <Tooltip
-                        title="CURAR!"
-                        placement="top"
+                    <Fab
+                        size="small"
+                        color="primary"
+                        variant="extended"
+                        onClick={() => props.useItem('remedy')}
                         style={{
                             marginRight: "15px"
                         }}
                     >
-                        <Fab
-                            size="small"
-                            color="primary"
-                            variant="extended"
-                            onClick={() => props.useItem('remedy')}
-                        >
-                            {props.yourItens!.remedy} <FavoriteBorderIcon fontSize="small"/>
-                        </Fab>
-                    </Tooltip>
-                    <Tooltip title="AUMENTAR ATAQUE!" placement="top">
-                        <Fab
-                            size="small"
-                            color="primary"
-                            variant="extended"
-                            onClick={() => props.useItem('maximumPower')}
-                        >
-                            {props.yourItens!.maximumPower} <OfflineBoltOutlinedIcon fontSize="small"/>
-                        </Fab>
-                    </Tooltip>
+                        {props.yourItens!.remedy} <FavoriteBorderIcon fontSize="small"/>
+                    </Fab>
+                    <Fab
+                        size="small"
+                        color="primary"
+                        variant="extended"
+                        onClick={() => props.useItem('maximumPower')}
+                    >
+                        {props.yourItens!.maximumPower} <OfflineBoltOutlinedIcon fontSize="small"/>
+                    </Fab>
                 </CardActions>
             ) : (<></>)}
         </>

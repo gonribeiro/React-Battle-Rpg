@@ -1,21 +1,32 @@
 import { Link } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
-import Cookies from 'js-cookie';
+// import { useAuth } from '../hooks/useAuth';
+// import { database } from '../services/firebase';
+import { useStory } from '../hooks/useStory';
 
 import { Paper, Grid, Button } from '@material-ui/core';
 
 import GitHubIcon from '@material-ui/icons/GitHub';
 
 export default function Landing() {
+    // const { user, signInWithGoogle } = useAuth();
     const history = useHistory();
+    const { updateStoryValue } = useStory();
 
-    function gameMode(mode: String) {
+    async function gameMode(mode: String) {
         if (mode === 'new-game') { // Parâmetros para novo jogo do modo história
-            Cookies.set('opponentMonsterNumber', String(0));
-            Cookies.set('yourMonsterNumber', String(0));
-            Cookies.set('storyNumber', String(0));
-            Cookies.set('remedy', String(2));
-            Cookies.set('maximumPower', String(2));
+            // if (!user) {
+            //     await signInWithGoogle();
+            // }
+
+            updateStoryValue({
+                opponentMonsterNumber: 0,
+                yourMonsterNumber: 0,
+                storyNumber: 0,
+                remedy: 2,
+                maximumPower: 2,
+                inGame: true
+            })
 
             history.push('/story-mode');
             return;
@@ -47,7 +58,7 @@ export default function Landing() {
                 }}
             >
                 <Paper className="paper">
-                    <Grid container spacing={2} justify="center">
+                    {/* <Grid container spacing={2} justify="center">
                         <Button
                             size="large"
                             color="primary"
@@ -59,7 +70,7 @@ export default function Landing() {
                         >
                             Continuar História
                         </Button>
-                    </Grid>
+                    </Grid> */}
                     <Grid container spacing={2} justify="center">
                         <Button
                             size="large"
@@ -67,17 +78,27 @@ export default function Landing() {
                             onClick={() => gameMode('new-game')}
                         >
                             Modo História
+                            {/* {!user ? '(Login)' : ''} */}
                         </Button>
                     </Grid>
                     {/* <Grid container spacing={2} justify="center">
-                        <a href="/battle-mode">
-                            <Button
-                                size="large"
-                                color="primary"
-                            >
-                                Batalhar On-Line
-                            </Button>
-                        </a>
+                        <Button
+                            size="large"
+                            color="primary"
+                            disabled={true}
+                        >
+                            Pontuação
+                        </Button>
+                    </Grid>
+                    <Grid container spacing={2} justify="center">
+                        <Button
+                            size="large"
+                            color="primary"
+                            disabled={true}
+                        >
+                            Batalhar On-Line
+                            {!user ? '(Login)' : ''}
+                        </Button>
                     </Grid> */}
                     <Grid container spacing={2} justify="center">
                         <Button
@@ -99,18 +120,15 @@ export default function Landing() {
                         </Link>
                     </Grid>
                     <Grid container spacing={2} justify="center">
-                        <a 
+                        <Button
+                            size="large"
+                            color="primary"
                             href="https://github.com/gonribeiro/React-Battle-Rpg"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <Button
-                                size="large"
-                                color="primary"
-                            >
-                                <GitHubIcon /> &nbsp; Github
-                            </Button>
-                        </a>
+                            <GitHubIcon /> &nbsp; Github
+                        </Button>
                     </Grid>
                 </Paper>
             </Grid>
