@@ -11,7 +11,7 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 export default function Landing() {
     // const { user, signInWithGoogle } = useAuth();
     const history = useHistory();
-    const { updateStoryValue } = useStory();
+    const { storyValue, updateStoryValue } = useStory();
 
     async function gameMode(mode: String) {
         if (mode === 'new-game') { // Parâmetros para novo jogo do modo história
@@ -58,19 +58,16 @@ export default function Landing() {
                 }}
             >
                 <Paper className="paper">
-                    {/* <Grid container spacing={2} justify="center">
+                    <Grid container spacing={2} justify="center">
                         <Button
                             size="large"
                             color="primary"
                             onClick={() => gameMode('story-mode')}
-                            disabled={
-                                // Havendo cookie, há opção de continuar história
-                                String(Cookies.get('storyNumber')) !== 'undefined' ? false : true
-                            }
+                            disabled={storyValue.inGame ? false : true}
                         >
                             Continuar História
                         </Button>
-                    </Grid> */}
+                    </Grid>
                     <Grid container spacing={2} justify="center">
                         <Button
                             size="large"
