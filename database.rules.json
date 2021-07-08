@@ -1,0 +1,8 @@
+{
+  "rules": {
+    "ranking": {
+      ".read": true,
+      ".write": "auth != null"
+    }
+  }
+}
