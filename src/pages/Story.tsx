@@ -69,7 +69,7 @@ export default function Story() {
             date: Date()
         });
 
-        history.push('/ranking');
+        history.push('/');
     }
 
     return (

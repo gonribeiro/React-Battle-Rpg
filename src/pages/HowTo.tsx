@@ -121,6 +121,21 @@ export default function HowTo() {
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
+                    <Accordion expanded={expandedAccordion === 'score'} onChange={openAccordion('score')}>
+                        <AccordionSummary expandIcon={<ExpandMoreIcon />} >
+                            <Typography><strong>Pontuação do modo história</strong></Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Typography>
+                                Ao finalizar o modo história, você recebe uma pontuação de acordo com o seu desempenho.<br />
+                                Como a pontuação é calculada? <br /><br />
+                                Cada vitória lhe concede 100 pontos. <br />
+                                + 100 pontos por cada item (remédio ou poder máximo) que estiver no seu estoque. <br />
+                                + 10 pontos por cada ponto de vida que o seu personagem tiver no final do confronto. <br />
+                                Alcançando o final secreto, você receberá +1000 (mil) pontos de bônus.
+                            </Typography>
+                        </AccordionDetails>
+                    </Accordion>
                 </Paper>
             </Grid>
             <BackUrl />

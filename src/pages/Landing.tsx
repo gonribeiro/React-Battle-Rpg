@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useAuth } from '../hooks/useAuth';
 import { useStory } from '../hooks/useStory';
 
-import { Paper, Grid, Button } from '@material-ui/core';
+import { Paper, Grid, Button, CardHeader, Avatar, Divider } from '@material-ui/core';
 
 import GitHubIcon from '@material-ui/icons/GitHub';
 
@@ -58,6 +58,22 @@ export default function Landing() {
                 }}
             >
                 <Paper className="paper">
+                    { // @todo refazer
+                        storyValue.inGame === false && storyValue.score > 0 ? (
+                        <>
+                            <CardHeader
+                                avatar={
+                                    <Avatar
+                                        alt={'Avatar de: ' + user?.name}
+                                        src={user?.avatar}
+                                    ></Avatar>
+                                }
+                                title="Campanha finalizada"
+                                subheader={'com ' + storyValue.score + ' pontos'}
+                            />
+                            <Divider /><br />
+                        </>
+                    ) : (<></>)}
                     <Grid container spacing={2} justify="center">
                         <Button
                             size="large"

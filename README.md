@@ -35,6 +35,7 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 - [TypeScript](https://www.typescriptlang.org/)
 - [Material-UI](https://material-ui.com/)
 - [Firebase](https://firebase.google.com/)
+- [Mui-Datatable](https://github.com/gregnb/mui-datatables)
 
 ## 🚀 Começando
 
@@ -66,6 +67,7 @@ Este projeto está licenciado sob a Licença MIT. Veja o arquivo de [LICENÇA](L
 - @material-ui/core @material-ui/icons @types/material-ui
 - ~~js-cookie @types/js-cookie -D~~
 - firebase
+- mui-datatables @types/mui-datatables
 
 ---
 <p align="center">História e Jogo criado por 💜 Tiago Ribeiro</p>

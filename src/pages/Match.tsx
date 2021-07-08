@@ -64,7 +64,7 @@ export default function Match() {
             setBattleSituation(defender.name + ' sofreu ' + battleResult + ' de dano!')
 
             if (defender.life <= 0) {
-                afterBattle(attacker.name);
+                aftermath(attacker.name);
             }
         } else {
             setBattleSituation(defender.name + ' defendeu!')
@@ -102,7 +102,7 @@ export default function Match() {
         setTurn(false); // Após uso do item, seu personagem fica na defensiva
     }
 
-    function afterBattle(attackerName: string) {
+    function aftermath(attackerName: string) {
         // Modo história
         if (locationUrl.pathname === '/story-battle') {
             let score = storyValue.score + 100 + (storyValue.remedy * 100) + (storyValue.maximumPower * 100) + (yourMonster.life * 10);
