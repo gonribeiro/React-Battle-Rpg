@@ -1,7 +1,7 @@
 <h1 align="center">
     React Battle Rpg
     <br />
-    <a href="https://react-battle-monster.herokuapp.com/" target="_blank">https://react-battle-monster.herokuapp.com/</a>
+    <a href="https://react-battle-rpg.web.app/" target="_blank">https://react-battle-rpg.web.app/</a>
 </h1>
 
 <p align="center">
@@ -23,7 +23,7 @@ Possui:
 - Modo Batalha;
 - Modo História (com três finais possíveis: ruim, bom e secreto).
 
-Para conhecer e jogar, acesse: https://react-battle-monster.herokuapp.com/.
+Para conhecer e jogar, acesse: https://react-battle-rpg.web.app/.
 
 (As telas são responsivas, portanto, sinta-se a vontade para jogar em qualquer dispositivo).
 
