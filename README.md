@@ -34,8 +34,11 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 - [React](https://reactjs.org)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Material-UI](https://material-ui.com/)
+- [Firebase](https://firebase.google.com/)
 
 ## 🚀 Começando
+
+O projeto utiliza autenticação do google e banco de dados pelo firebase. Você deve configurar o firebase para usar todos os recursos do projeto ou utilize a [versão 1.2.0 beta](https://github.com/gonribeiro/React-Battle-Rpg/releases/tag/v1.2.0-beta). Esta versão não possui esses recursos implementados e você poderá executá-lo mais facilmente.
 
 Clone o projeto e acesse a pasta.
 
@@ -61,7 +64,7 @@ Este projeto está licenciado sob a Licença MIT. Veja o arquivo de [LICENÇA](L
 
 - react-router-dom @types/react-router-dom
 - @material-ui/core @material-ui/icons @types/material-ui
-- js-cookie @types/js-cookie -D
+- ~~js-cookie @types/js-cookie -D~~
 - firebase
 
 ---

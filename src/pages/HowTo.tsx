@@ -1,12 +1,12 @@
-import { useState, Fragment } from 'react';
+import { useState } from 'react';
 
 import { makeStyles, 
-    Paper, 
-    Grid, 
-    Typography, 
-    Accordion, 
-    AccordionDetails, 
-    AccordionSummary 
+    Paper,
+    Grid,
+    Typography,
+    Accordion,
+    AccordionDetails,
+    AccordionSummary
 } from '@material-ui/core';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -29,16 +29,16 @@ export default function HowTo() {
     };
 
     return (
-        <Fragment>
-            <Grid 
+        <>
+            <Grid
                 container
                 direction="row"
                 justify="center"
                 alignItems="center"
                 style={{
-                    margin: 'auto', 
-                    maxWidth: 990, 
-                    minHeight: window.innerHeight - 40, 
+                    margin: 'auto',
+                    maxWidth: 990,
+                    minHeight: window.innerHeight - 40,
                 }}
             >
                 <Paper className="paper">
@@ -124,6 +124,6 @@ export default function HowTo() {
                 </Paper>
             </Grid>
             <BackUrl />
-        </Fragment>
+        </>
     );
 }

@@ -104,12 +104,15 @@ export default function Match() {
 
     function afterBattle(attackerName: string) {
         // Modo história
-        if (locationUrl.pathname === '/story-battle') { 
+        if (locationUrl.pathname === '/story-battle') {
+            let score = storyValue.score + 100 + (storyValue.remedy * 100) + (storyValue.maximumPower * 100) + (yourMonster.life * 10);
+
             if (opponentMonster.life <= 0 && opponentMonster.id !== 'boss1') { // Próxima história
                 updateStoryValue({
                     ...storyValue,
                     storyNumber: storyStorage.findIndex(x => x.callBattle === storyValue.opponentMonsterNumber) + 1,
-                    opponentMonsterNumber: storyValue.opponentMonsterNumber + 1
+                    opponentMonsterNumber: storyValue.opponentMonsterNumber + 1,
+                    score: score
                 });
             } else if (
                 yourMonster.life <= 0 && opponentMonster.id === 'boss1' && yourMonster.id === 'inicial'
@@ -129,12 +132,15 @@ export default function Match() {
                 updateStoryValue({
                     ...storyValue,
                     storyNumber: storyStorage.findIndex(x => x.id === 'good-ending'),
-                    inGame: false
+                    score: score,
+                    inGame: false,
                 });
             } else {
                 updateStoryValue({
                     ...storyValue,
                     storyNumber: storyStorage.findIndex(x => x.id === 'secret-ending'),
+                    score: score + 1000,
+                    inGame: false,
                 });
             }
 

@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
-// import { useAuth } from '../hooks/useAuth';
-// import { database } from '../services/firebase';
+import { useAuth } from '../hooks/useAuth';
 import { useStory } from '../hooks/useStory';
 
 import { Paper, Grid, Button } from '@material-ui/core';
@@ -9,15 +8,15 @@ import { Paper, Grid, Button } from '@material-ui/core';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
 export default function Landing() {
-    // const { user, signInWithGoogle } = useAuth();
+    const { user, signInWithGoogle } = useAuth();
     const history = useHistory();
     const { storyValue, updateStoryValue } = useStory();
 
     async function gameMode(mode: String) {
         if (mode === 'new-game') { // Parâmetros para novo jogo do modo história
-            // if (!user) {
-            //     await signInWithGoogle();
-            // }
+            if (!user) {
+                await signInWithGoogle();
+            }
 
             updateStoryValue({
                 opponentMonsterNumber: 0,
@@ -25,7 +24,8 @@ export default function Landing() {
                 storyNumber: 0,
                 remedy: 2,
                 maximumPower: 2,
-                inGame: true
+                inGame: true,
+                score: 0
             })
 
             history.push('/story-mode');
@@ -74,27 +74,25 @@ export default function Landing() {
                             color="primary"
                             onClick={() => gameMode('new-game')}
                         >
-                            Modo História
-                            {/* {!user ? '(Login)' : ''} */}
+                            Modo História {!user ? '(Login)' : ''}
                         </Button>
+                    </Grid>
+                    <Grid container spacing={2} justify="center">
+                        <Link to="/ranking">
+                            <Button
+                                size="large"
+                                color="primary"
+                            >
+                                Classificação
+                            </Button>
+                        </Link>
                     </Grid>
                     {/* <Grid container spacing={2} justify="center">
                         <Button
                             size="large"
                             color="primary"
-                            disabled={true}
                         >
-                            Pontuação
-                        </Button>
-                    </Grid>
-                    <Grid container spacing={2} justify="center">
-                        <Button
-                            size="large"
-                            color="primary"
-                            disabled={true}
-                        >
-                            Batalhar On-Line
-                            {!user ? '(Login)' : ''}
+                            Batalhar On-Line {!user ? '(Login)' : ''}
                         </Button>
                     </Grid> */}
                     <Grid container spacing={2} justify="center">

@@ -7,6 +7,7 @@ type StoryType = {
     opponentMonsterNumber: number;
     storyNumber: number;
     inGame: boolean;
+    score: number
 }
 
 type UpdateStoryContextType = {
@@ -27,7 +28,8 @@ export function StoryContextProvider(props: StoryContextProviderProps) {
         yourMonsterNumber: 0,
         opponentMonsterNumber: 0,
         storyNumber: 0,
-        inGame: false
+        inGame: false,
+        score: 0
     });
 
     function updateStoryValue(value: StoryType) {
@@ -38,6 +40,7 @@ export function StoryContextProvider(props: StoryContextProviderProps) {
             opponentMonsterNumber: value.opponentMonsterNumber,
             storyNumber: value.storyNumber,
             inGame: value.inGame,
+            score: value.score
         };
         setStoryValue(updateValues);
     }

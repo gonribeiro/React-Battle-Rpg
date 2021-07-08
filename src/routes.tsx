@@ -6,6 +6,7 @@ import Landing from './pages/Landing';
 import Match from './pages/Match';
 import HowTo from './pages/HowTo';
 import Story from './pages/Story';
+import Ranking from './pages/Ranking';
 
 function Routes() {
     return (
@@ -18,6 +19,7 @@ function Routes() {
                         <Route path="/howto" exact component={HowTo} />
                         <Route path="/story-mode" exact component={Story} />
                         <Route path="/story-battle" exact component={Match} />
+                        <Route path="/ranking" exact component={Ranking} />
                     </Switch>
                 </StoryContextProvider>
             </AuthContextProvider>

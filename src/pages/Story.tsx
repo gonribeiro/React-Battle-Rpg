@@ -1,6 +1,8 @@
 import { Fragment, useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useStory } from '../hooks/useStory';
+import { useAuth } from '../hooks/useAuth';
+import { database } from '../services/firebase';
 
 import { Paper, Grid, Typography, Fab, CardMedia } from '@material-ui/core';
 import FastForwardIcon from '@material-ui/icons/FastForward';
@@ -13,6 +15,7 @@ import storyStorage from '../storage/Stories';
 export default function Story() {
     const history = useHistory();
     const { storyValue, updateStoryValue } = useStory();
+    const { user, signInWithGoogle } = useAuth();
 
     const [text, setText] = useState(String);
     const [numberLetter, setNumberLetter] = useState(0);
@@ -26,7 +29,11 @@ export default function Story() {
         }
     }, [numberLetter]);
 
-    function continueStory() {
+    async function continueStory() {
+        if (!user) {
+            await signInWithGoogle();
+        }
+
         if (storyStorage[storyValue.storyNumber]['endingGame']) {
             updateStoryValue({...storyValue, inGame: false });
             endGame();
@@ -51,8 +58,18 @@ export default function Story() {
         history.push('/story-battle');
     }
 
-    function endGame() {
-        history.push('/');
+    async function endGame() {
+        const rankingRef = database.ref(`ranking`);
+
+        await rankingRef.push({
+            id: user?.id,
+            name: user?.name,
+            avatar: user?.avatar,
+            score: storyValue.score,
+            date: Date()
+        });
+
+        history.push('/ranking');
     }
 
     return (
