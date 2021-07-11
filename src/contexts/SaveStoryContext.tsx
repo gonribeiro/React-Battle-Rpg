@@ -19,9 +19,9 @@ type StoryContextProviderProps = {
     children: ReactNode;
 }
 
-export const StoryContext = createContext({} as UpdateStoryContextType);
+export const SaveStoryContext = createContext({} as UpdateStoryContextType);
 
-export function StoryContextProvider(props: StoryContextProviderProps) {
+export function SaveStoryContextProvider(props: StoryContextProviderProps) {
     const [storyValue, setStoryValue] = useState<StoryType>({
         remedy: 2,
         maximumPower: 2,
@@ -42,12 +42,13 @@ export function StoryContextProvider(props: StoryContextProviderProps) {
             inGame: value.inGame,
             score: value.score
         };
+
         setStoryValue(updateValues);
     }
 
     return (
-        <StoryContext.Provider value={{ storyValue, updateStoryValue }}>
+        <SaveStoryContext.Provider value={{ storyValue, updateStoryValue }}>
             {props.children}
-        </StoryContext.Provider>
+        </SaveStoryContext.Provider>
     );
 }

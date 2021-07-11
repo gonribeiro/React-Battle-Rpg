@@ -54,7 +54,7 @@ const Fighter: React.FC<FighterProps> = (props) => {
                     </CardContent>
                 </CardActionArea>
             </Card>
-            { props.commandFighter && props.opponentMonsterLife! > 0 && props.monster.life > 0 ? (
+            {props.commandFighter && props.opponentMonsterLife! > 0 && props.monster.life > 0 &&
                 <CardActions>
                     <Fab
                         size="small"
@@ -87,7 +87,7 @@ const Fighter: React.FC<FighterProps> = (props) => {
                         {props.yourItens!.maximumPower} <OfflineBoltOutlinedIcon fontSize="small"/>
                     </Fab>
                 </CardActions>
-            ) : (<></>)}
+            }
         </>
     )
 }

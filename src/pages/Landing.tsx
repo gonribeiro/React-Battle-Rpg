@@ -1,39 +1,16 @@
 import { Link } from 'react-router-dom';
-import { useHistory } from "react-router-dom";
 import { useAuth } from '../hooks/useAuth';
-import { useStory } from '../hooks/useStory';
+import { useSaveStory } from '../hooks/useSaveStory';
+import { useMatch } from '../hooks/useMatch';
 
 import { Paper, Grid, Button, CardHeader, Avatar, Divider } from '@material-ui/core';
 
 import GitHubIcon from '@material-ui/icons/GitHub';
 
 export default function Landing() {
-    const { user, signInWithGoogle } = useAuth();
-    const history = useHistory();
-    const { storyValue, updateStoryValue } = useStory();
-
-    async function gameMode(mode: String) {
-        if (mode === 'new-game') { // Parâmetros para novo jogo do modo história
-            if (!user) {
-                await signInWithGoogle();
-            }
-
-            updateStoryValue({
-                opponentMonsterNumber: 0,
-                yourMonsterNumber: 0,
-                storyNumber: 0,
-                remedy: 2,
-                maximumPower: 2,
-                inGame: true,
-                score: 0
-            })
-
-            history.push('/story-mode');
-            return;
-        }
-
-        history.push('/'+mode);
-    }
+    const { user } = useAuth();
+    const { storyValue } = useSaveStory();
+    const { gameMode } = useMatch();
 
     return (
         <div
@@ -49,7 +26,7 @@ export default function Landing() {
             <Grid
                 container
                 direction="row"
-                justify="center"
+                justifyContent="center"
                 alignItems="center"
                 style={{
                     margin: "auto",
@@ -58,8 +35,7 @@ export default function Landing() {
                 }}
             >
                 <Paper className="paper">
-                    { // @todo refazer
-                        storyValue.inGame === false && storyValue.score > 0 ? (
+                    {storyValue.inGame === false && storyValue.score > 0 &&
                         <>
                             <CardHeader
                                 avatar={
@@ -73,8 +49,8 @@ export default function Landing() {
                             />
                             <Divider /><br />
                         </>
-                    ) : (<></>)}
-                    <Grid container spacing={2} justify="center">
+                    }
+                    <Grid container spacing={2} justifyContent="center">
                         <Button
                             size="large"
                             color="primary"
@@ -84,7 +60,7 @@ export default function Landing() {
                             Continuar História
                         </Button>
                     </Grid>
-                    <Grid container spacing={2} justify="center">
+                    <Grid container spacing={2} justifyContent="center">
                         <Button
                             size="large"
                             color="primary"
@@ -93,7 +69,7 @@ export default function Landing() {
                             Modo História {!user ? '(Login)' : ''}
                         </Button>
                     </Grid>
-                    <Grid container spacing={2} justify="center">
+                    <Grid container spacing={2} justifyContent="center">
                         <Link to="/ranking">
                             <Button
                                 size="large"
@@ -103,7 +79,7 @@ export default function Landing() {
                             </Button>
                         </Link>
                     </Grid>
-                    {/* <Grid container spacing={2} justify="center">
+                    {/* <Grid container spacing={2} justifyContent="center">
                         <Button
                             size="large"
                             color="primary"
@@ -111,7 +87,7 @@ export default function Landing() {
                             Batalhar On-Line {!user ? '(Login)' : ''}
                         </Button>
                     </Grid> */}
-                    <Grid container spacing={2} justify="center">
+                    <Grid container spacing={2} justifyContent="center">
                         <Button
                             size="large"
                             color="primary"
@@ -120,7 +96,7 @@ export default function Landing() {
                             Treinar
                         </Button>
                     </Grid>
-                    <Grid container spacing={2} justify="center">
+                    <Grid container spacing={2} justifyContent="center">
                         <Link to="/howto">
                             <Button
                                 size="large"
@@ -130,7 +106,7 @@ export default function Landing() {
                             </Button>
                         </Link>
                     </Grid>
-                    <Grid container spacing={2} justify="center">
+                    <Grid container spacing={2} justifyContent="center">
                         <Button
                             size="large"
                             color="primary"
