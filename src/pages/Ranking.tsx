@@ -64,7 +64,7 @@ export default function Mui() {
     },
     {
       name: "",
-      label: "Avatar",
+      label: "",
       options: {
         filter: false,
         sort: false,
@@ -149,7 +149,7 @@ export default function Mui() {
       <Grid
           container
           direction="row"
-          justify="center"
+          justifyContent="center"
           alignItems="center"
           style={{
             margin: 'auto',

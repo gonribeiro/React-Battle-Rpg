@@ -13,15 +13,22 @@ export function useStory() {
 
     const [text, setText] = useState(String);
     const [numberLetter, setNumberLetter] = useState(0);
+    const [speedText, setSpeedText] = useState(false);
 
     useEffect(() => {
-        if (numberLetter < storyStorage[storyValue.storyNumber]['text'].length) { // Escreve o texto pausadamente
-            setText(text => text + storyStorage[storyValue.storyNumber]['text'].charAt(numberLetter)); // Adiciona a próxima letra ao texto
+        // Escreve o texto pausadamente
+        if (numberLetter < storyStorage[storyValue.storyNumber]['text'].length) {
+            // Adiciona a próxima letra ao texto
+            setText(text => text + storyStorage[storyValue.storyNumber]['text'].charAt(numberLetter));
             setTimeout(() => {
                 setNumberLetter(numberLetter + 1);
-            }, 70)
+            }, speedText === true ? 1 : 70)
         }
     }, [numberLetter]);
+
+    function speedTextStory() {
+        setSpeedText(!speedText);
+    }
 
     async function continueStory() {
         if (!user) {
@@ -31,6 +38,7 @@ export function useStory() {
         if (storyStorage[storyValue.storyNumber]['endingGame']) {
             updateStoryValue({...storyValue, inGame: false });
             endGame();
+            return;
         }
         
         if (String(storyStorage[storyValue.storyNumber]['callBattle']) !== 'undefined') {
@@ -43,8 +51,7 @@ export function useStory() {
     }
 
     function callBattle() {
-        // Se ultima batalha houve derrota, encerra jogo
-        if (!storyValue.inGame) {
+        if (!storyValue.inGame) { // Garante não entrar em nova batalha após fim de jogo
             endGame();
             return;
         }
@@ -66,5 +73,14 @@ export function useStory() {
         history.push('/');
     }
 
-    return { continueStory, callBattle, text, numberLetter, storyStorage, storyValue };
+    return {
+        continueStory,
+        callBattle,
+        text,
+        speedTextStory,
+        speedText,
+        numberLetter,
+        storyStorage,
+        storyValue
+    };
 }

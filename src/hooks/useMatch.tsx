@@ -7,6 +7,13 @@ import { useSaveStory } from '../hooks/useSaveStory';
 import { yourMonsterStorage, opponentMonsterStorage } from "../storage/Monsters";
 import storyStorage from '../storage/Stories';
 
+type MatchType = {
+    turn: boolean;
+    remedy: number;
+    maximumPower: number;
+    opponentMonsterNumber: number;
+}
+
 type MonsterType = {
     id: string;
     name: string;
@@ -16,47 +23,46 @@ type MonsterType = {
     monsterImg: string;
 }
 
-type ItensType = {
-    remedy: number;
-    maximumPower: number;
-}
-
 export function useMatch() {
     const { user, signInWithGoogle } = useAuth();
     const { storyValue, updateStoryValue } = useSaveStory();
-
     const history = useHistory();
     const locationUrl = useLocation();
-    
-    const [turn, setTurn] = useState(true);
+
+    const [match, setMatch] = useState<MatchType>({
+        turn: true,
+        remedy: 2,
+        maximumPower: 2,
+        opponentMonsterNumber: 0
+    });
     const [battleSituation, setBattleSituation] = useState(String);
     const [battleStatus, setBattleStatus] = useState(String);
-    const [yourItens, setYourItens] = useState<ItensType>({remedy: 2, maximumPower: 2});
+
     const [yourMonster, setYourMonster] = useState<MonsterType>({...yourMonsterStorage[0]});
     const [opponentMonster, setOpponentMonster] = useState<MonsterType>({...opponentMonsterStorage[0]});
-    const [opponentMonsterNumber, setOpponentMonsterNumber] = useState(0);
 
     useEffect(() => {
         if (locationUrl.pathname === '/story-battle') {
             setOpponentMonster({...opponentMonsterStorage[storyValue.opponentMonsterNumber]});
             setYourMonster({...yourMonsterStorage[storyValue.yourMonsterNumber]});
-            setYourItens({
+            setMatch({
+                ...match,
                 remedy: storyValue.remedy,
                 maximumPower: storyValue.maximumPower
             })
-        } else { // treining
-            setOpponentMonster({...opponentMonsterStorage[opponentMonsterNumber]});
+        } else { // treino
+            setOpponentMonster({...opponentMonsterStorage[match.opponentMonsterNumber]});
             setYourMonster({...yourMonsterStorage[0]});
         }
-    }, [opponentMonsterNumber]);
+    }, [match.opponentMonsterNumber]);
 
     async function gameMode(mode: String) {
-        if (mode === 'new-game') { // Parâmetros para novo jogo do modo história
+        if (mode === 'new-game') {
             if (!user) {
                 await signInWithGoogle();
             }
 
-            updateStoryValue({
+            updateStoryValue({ // Parâmetros para novo jogo do modo história
                 opponentMonsterNumber: 0,
                 yourMonsterNumber: 0,
                 storyNumber: 0,
@@ -74,8 +80,8 @@ export function useMatch() {
     }
 
     function fighting() {
-        let attacker = turn ? yourMonster : opponentMonster;
-        let defender = turn ? opponentMonster : yourMonster;
+        let attacker = match.turn ? yourMonster : opponentMonster;
+        let defender = match.turn ? opponentMonster : yourMonster;
 
         // Bônus somado ao ataque e defesa
         let attackChance = Math.floor(Math.random() * 6) + 4;
@@ -83,8 +89,8 @@ export function useMatch() {
         let battleResult = (attacker.attack + attackChance) - (defender.defense + defenseChance);
 
         if (battleResult > 0) {
-            defender.life -= battleResult;
-            setBattleSituation(defender.name + ' sofreu ' + battleResult + ' de dano!')
+            defender.life -= battleResult; //@todo rever
+            setBattleSituation(defender.name + ' sofreu ' + battleResult + ' de dano!');
 
             if (defender.life <= 0) {
                 aftermath(attacker.name);
@@ -98,35 +104,34 @@ export function useMatch() {
             defender.name + ' usou ' + (defender.defense + defenseChance) + ' de defesa!'
         )
 
-        setTurn(!turn);
+        setMatch({...match, turn: !match.turn});
     }
 
     function useItem(item: string) {
-        if (item === 'remedy' && yourItens.remedy > 0) {
+        if (item === 'remedy' && match.remedy > 0) {
             if (locationUrl.pathname === '/story-battle') {
                 updateStoryValue({...storyValue, remedy: storyValue.remedy - 1});
             }
 
-            yourItens.remedy --;
-            yourMonster.life = yourMonster.id === 'inicial' ? 6 : 12; // Restaura a vida de acordo com o personagem
+            setMatch({...match, remedy: match.remedy - 1, turn: false});
+            setYourMonster({...yourMonster, life: yourMonster.id === 'inicial' ? 6 : 12});
             setBattleSituation(yourMonster.name + ' restaurou a vida!');
-        } else if (item === 'maximumPower' && yourItens.maximumPower > 0){
+        } else if (item === 'maximumPower' && match.maximumPower > 0){
             if (locationUrl.pathname === '/story-battle') {
                 updateStoryValue({...storyValue, maximumPower: storyValue.maximumPower - 1});
             }
 
-            yourItens.maximumPower --;
-            yourMonster.attack += 3;
+            setMatch({...match, maximumPower: match.maximumPower - 1, turn: false});
+            setYourMonster({...yourMonster, attack: yourMonster.attack + 3});
             setBattleSituation(yourMonster.name + ' ganhou + 3 de ataque!');
         } else {
             setBattleSituation('Você não possui mais esse item.');
         }
-
-        setTurn(false); // Após uso do item, seu personagem fica na defensiva
     }
 
     function aftermath(attackerName: string) {
-        // Modo história @todo rever modo história estar aqui
+        // Modo história
+        // @todo não deveria atualizar informações da história aqui? rever
         if (locationUrl.pathname === '/story-battle') {
             let score = storyValue.score + 100 + (storyValue.remedy * 100) + (storyValue.maximumPower * 100) + (yourMonster.life * 10);
 
@@ -158,7 +163,7 @@ export function useMatch() {
                     score: score,
                     inGame: false,
                 });
-            } else {
+            } else if (opponentMonster.life <= 0) {
                 updateStoryValue({
                     ...storyValue,
                     storyNumber: storyStorage.findIndex(x => x.id === 'secret-ending'),
@@ -167,20 +172,28 @@ export function useMatch() {
                 });
             }
 
-            history.push('/story-mode');
             return;
         }
 
         // Modo treino
         if (opponentMonster.life <= 0) {
             setBattleSituation(attackerName + ' venceu!');
-            if (opponentMonsterNumber !== 4) {
-                setOpponentMonsterNumber(opponentMonsterNumber + 1);
+            if (match.opponentMonsterNumber !== 4) {
+                setMatch({
+                    ...match,
+                    turn: true
+                });
             }
-
-            setTurn(true);
         } else {
             setBattleSituation(attackerName + ' venceu! Fim de jogo.');
+        }
+    }
+
+    function continueGame() {
+        if (locationUrl.pathname === '/story-battle') {
+            history.push('/story-mode');
+        } else {
+            setMatch({...match, opponentMonsterNumber: match.opponentMonsterNumber + 1 });
         }
     }
 
@@ -188,10 +201,10 @@ export function useMatch() {
         gameMode,
         fighting,
         useItem,
+        continueGame,
+        match,
         battleSituation,
         battleStatus,
-        turn,
-        yourItens,
         yourMonster,
         opponentMonster
     };

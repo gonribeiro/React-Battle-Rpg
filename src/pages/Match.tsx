@@ -1,4 +1,4 @@
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { useMatch } from "../hooks/useMatch";
 
 import { Grid, Typography, Fab, Paper } from '@material-ui/core';
@@ -8,13 +8,14 @@ import BackUrl from '../utils/BackUrl';
 
 export default function Match() {
     const history = useHistory();
+    const locationUrl = useLocation();
     const {
         fighting,
         useItem,
+        continueGame,
+        match,
         battleSituation,
         battleStatus,
-        turn,
-        yourItens,
         yourMonster,
         opponentMonster
     } = useMatch();
@@ -33,7 +34,7 @@ export default function Match() {
             <Grid
                 container
                 direction="row"
-                justify="space-between"
+                justifyContent="space-between"
                 alignItems="center"
                 style={{
                     margin: 'auto',
@@ -44,9 +45,8 @@ export default function Match() {
                 <Grid item xs={12} sm={3}>
                     <Fighter
                         monster={yourMonster}
-                        yourItens={yourItens}
+                        match={match}
                         commandFighter={true}
-                        turn={turn}
                         opponentMonsterLife={opponentMonster.life}
                         fight={fighting}
                         useItem={useItem}
@@ -57,32 +57,37 @@ export default function Match() {
                         <Typography color="textSecondary" variant="h6" component="p" align="center">
                             {battleSituation} <br />
                         </Typography>
-                        {yourMonster.life <= 0 || opponentMonster.life <= 0 ? (
-                            <>
-                                <Typography variant="body2" align="center">
-                                    <br />
-                                    <Fab
-                                        size="small"
-                                        color="primary"
-                                        variant="extended"
-                                        onClick={() => history.go(0)}
-                                    >
-                                        Tentar Novamente
-                                        </Fab>
-                                    <br /><br />
-                                    <Link to="/">
-                                        <Fab
-                                            size="small"
-                                            color="secondary"
-                                            variant="extended"
-                                        >
-                                            Encerrar
-                                        </Fab>
-                                    </Link>
-                                    <br /><br />
-                                </Typography>
-                            </>
-                        ) : (<></>)}
+                        {yourMonster.life <= 0 && locationUrl.pathname !== '/story-battle' &&
+                            <Typography variant="body2" align="center">
+                                <br />
+                                <Fab
+                                    size="small"
+                                    color="primary"
+                                    variant="extended"
+                                    onClick={() => history.go(0)}
+                                >
+                                    Tentar Novamente
+                                    </Fab>
+                                <br /><br />
+                            </Typography>
+                        }
+                        { //@todo melhorar
+                            ((opponentMonster.life <= 0 || yourMonster.life <= 0) && locationUrl.pathname === '/story-battle')
+                            || (opponentMonster.life <= 0 && opponentMonster.id !== 'boss1')
+                        ?
+                            <Typography variant="body2" align="center">
+                                <br />
+                                <Fab
+                                    size="small"
+                                    color="primary"
+                                    variant="extended"
+                                    onClick={continueGame}
+                                >
+                                    Continuar
+                                </Fab>
+                                <br /><br />
+                            </Typography>
+                        : <></>}
                         <Typography variant="body2" align="center">
                             {battleStatus}
                         </Typography>

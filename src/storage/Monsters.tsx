@@ -21,15 +21,15 @@ export const opponentMonsterStorage = [
         id: 'opponent1',
         name: "Weezing",
         monsterImg: "img/monsters/weezing.jpg",
-        attack: 3,
-        defense: 3,
-        life: 6
+        attack: 2,
+        defense: 4,
+        life: 4
     },{
         id: 'opponent2',
         name: "Grimer",
         monsterImg: "img/monsters/grimer.jpg",
-        attack: 3,
-        defense: 3,
+        attack: 2,
+        defense: 4,
         life: 6
     },{
         id: 'opponent3',
@@ -42,9 +42,9 @@ export const opponentMonsterStorage = [
         id: 'opponent4',
         name: "Skorupi",
         monsterImg: "img/monsters/skorupi.jpg",
-        attack: 3,
-        defense: 3,
-        life: 6
+        attack: 4,
+        defense: 2,
+        life: 5
     },{
         id: 'boss1',
         name: "Dark Lugia",

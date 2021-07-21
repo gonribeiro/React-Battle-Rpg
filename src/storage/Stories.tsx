@@ -10,6 +10,7 @@ const Story = [
     },{
         text: '[Gravando pelo celular]',
     },{
+        textImg: 'img/story/moon.jpg',
         text: '"04 de abril, 3 horas da madrugada."',
     },{
         text: '"Minhas investigações sobre a água me trouxeram a uma fábrica abandonada no interior do estado."',
@@ -160,7 +161,7 @@ const Story = [
     },{
         text: '[Um grande golpe é lançado e uma explosão acontece!]'
     },{
-        text: '[O oponente, ferido, foge da batalha.]'
+        text: '[Ferido, o oponente foge da batalha.]'
     },{
         text: '"Vencemos! Vencemos! Vencemos!"'
     },{

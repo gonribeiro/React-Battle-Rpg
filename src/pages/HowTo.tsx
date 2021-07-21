@@ -33,7 +33,7 @@ export default function HowTo() {
             <Grid
                 container
                 direction="row"
-                justify="center"
+                justifyContent="center"
                 alignItems="center"
                 style={{
                     margin: 'auto',
@@ -69,13 +69,13 @@ export default function HowTo() {
                                 <li>A segunda exibe informações da batalha (Se houve ou não danos, quanto cada personagem 
                                 utilizou de poder de ataque e defesa, se algum item foi utilizado e quem venceu).</li>
                                 <li>A terceira exibe informações do seu adversário.</li> <br />
-                                <Grid container spacing={2} justify="center">
+                                <Grid container spacing={2} justifyContent="center">
                                     <img src="/img/howto/boxes.jpg" alt="Boxes" width="90%"/> 
                                 </Grid>
                                 <br />
                                 Você sempre estará no comando dos turnos, efetuando uma ordem de ataque ou de defesa. <br />
                                 Por turno, sempre haverá um monstro atacando e um defendendo. <br /><br />
-                                <Grid container spacing={2} justify="center">
+                                <Grid container spacing={2} justifyContent="center">
                                     <img src="/img/howto/attack-defense.jpg" alt="AttackDefense" width="90%"/> 
                                 </Grid>
                                 <br />
@@ -84,7 +84,7 @@ export default function HowTo() {
                                 <li><strong>Poder de Ataque + Sorte:</strong> Poder de ataque fixo do personagem + um número (entre 1 e 6)
                                 aleatório de sorte.</li>
                                 <li><strong>Poder de Defesa + Sorte:</strong> Poder de defesa fixo do personagem + um número (entre 1 e 6) aleatório de sorte.</li> <br />
-                                <Grid container spacing={2} justify="center">
+                                <Grid container spacing={2} justifyContent="center">
                                     <img src="/img/howto/attributes.jpg" alt="Attributes"/> 
                                 </Grid>
                                 <br />
@@ -93,7 +93,7 @@ export default function HowTo() {
                                 <li>Seu oponente está defendendo e possui 3 de poder de defesa. Neste turno sua sorte foi 2. Total: 5 de defesa.</li>
                                 8 de ataque - 5 de defesa = 3 de dano. O defensor perde 3 de HP.
                                 Se o defensor tiver uma defesa igual ou maior ao ataque do oponente, então não haverá danos em seu HP. <br /><br />
-                                <Grid container spacing={2} justify="center">
+                                <Grid container spacing={2} justifyContent="center">
                                     <img src="/img/howto/battle-status.jpg" alt="BattleStatus" /> 
                                 </Grid>
                                 <br />
@@ -112,7 +112,7 @@ export default function HowTo() {
                                 No início do jogo você possui quatro itens de dois tipos: <br />
                                 <li>Duas unidades de Cura (quando utilizado, seu personagem tem a vida restaurada).</li>
                                 <li>Duas unidades de Aumentar Ataque (quando utilizado, seu personagem recebe + 3 de ataque).</li> <br />
-                                <Grid container spacing={2} justify="center">
+                                <Grid container spacing={2} justifyContent="center">
                                     <img src="/img/howto/itens.jpg" alt="Itens"/> 
                                 </Grid>
                                 <br />
@@ -130,8 +130,8 @@ export default function HowTo() {
                                 Ao finalizar o modo história, você recebe uma pontuação de acordo com o seu desempenho.<br />
                                 Como a pontuação é calculada? <br /><br />
                                 Cada vitória lhe concede 100 pontos. <br />
-                                + 100 pontos por cada item (remédio ou poder máximo) que estiver no seu estoque. <br />
-                                + 10 pontos por cada ponto de vida que o seu personagem tiver no final do confronto. <br />
+                                + 100 pontos por cada item (remédio ou poder máximo) que estiver no seu estoque no final de cada confronto. <br />
+                                + 10 pontos por cada ponto de vida que o seu personagem tiver no final de cada confronto. <br />
                                 Alcançando o final secreto, você receberá +1000 (mil) pontos de bônus.
                             </Typography>
                         </AccordionDetails>

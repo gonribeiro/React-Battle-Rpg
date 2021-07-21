@@ -1,6 +1,6 @@
 import { Paper, Grid, Typography, Fab, CardMedia } from '@material-ui/core';
-import FastForwardIcon from '@material-ui/icons/FastForward';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 
 import BackUrl from '../utils/BackUrl';
 
@@ -11,6 +11,8 @@ export default function Story() {
         continueStory,
         callBattle,
         text,
+        speedTextStory,
+        speedText,
         numberLetter,
         storyStorage,
         storyValue
@@ -21,7 +23,7 @@ export default function Story() {
             <Grid
                 container
                 direction="column"
-                justify="center"
+                justifyContent="center"
                 alignItems="center"
                 spacing={3}
                 style={{
@@ -53,14 +55,23 @@ export default function Story() {
                         </Typography>
                     </Paper>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid
+                    container
+                    direction="row"
+                    justifyContent="center"
+                    alignItems="center"
+                >
+                    <Fab size="medium" variant="extended" onClick={speedTextStory}>
+                        { speedText === false ? 'Acelerar' : 'Desacelerar' }
+                    </Fab>
+                    &nbsp;&nbsp;
                     { numberLetter === storyStorage[storyValue.storyNumber]['text'].length ? (
                         <Fab size="medium" color="primary" variant="extended" onClick={continueStory}>
-                            Prosseguir <FastForwardIcon />
+                            Prosseguir <PlayArrowIcon />
                         </Fab>
                     ) : (
                         <Fab size="medium" color="secondary" variant="extended" onClick={callBattle}>
-                            Ignorar história <SkipNextIcon />
+                            Pular história <SkipNextIcon />
                         </Fab>
                     )}
                 </Grid>

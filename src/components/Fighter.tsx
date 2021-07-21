@@ -20,12 +20,12 @@ type FighterProps = {
         life: number;
         monsterImg: string;
     };
-    yourItens?: {
+    match?: {
+        turn: boolean
         remedy: number;
         maximumPower: number;
-    };
+    }
     commandFighter?: boolean;
-    turn?: boolean;
     fight?: () => void;
     useItem?: any; //@todo corrigir
     opponentMonsterLife?: number;
@@ -65,7 +65,7 @@ const Fighter: React.FC<FighterProps> = (props) => {
                             marginRight: "15px"
                         }}
                     >
-                        {props.turn ? 'Ataque!' : 'Defenda!'}
+                        {props.match!.turn ? 'Ataque!' : 'Defenda!'}
                     </Fab>
                     <Fab
                         size="small"
@@ -76,7 +76,7 @@ const Fighter: React.FC<FighterProps> = (props) => {
                             marginRight: "15px"
                         }}
                     >
-                        {props.yourItens!.remedy} <FavoriteBorderIcon fontSize="small"/>
+                        {props.match!.remedy} <FavoriteBorderIcon fontSize="small"/>
                     </Fab>
                     <Fab
                         size="small"
@@ -84,7 +84,7 @@ const Fighter: React.FC<FighterProps> = (props) => {
                         variant="extended"
                         onClick={() => props.useItem('maximumPower')}
                     >
-                        {props.yourItens!.maximumPower} <OfflineBoltOutlinedIcon fontSize="small"/>
+                        {props.match!.maximumPower} <OfflineBoltOutlinedIcon fontSize="small"/>
                     </Fab>
                 </CardActions>
             }
