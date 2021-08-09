@@ -1,7 +1,5 @@
 <h1 align="center">
     React Battle Rpg
-    <br />
-    <a href="https://react-battle-rpg.web.app/" target="_blank">https://react-battle-rpg.web.app/</a>
 </h1>
 
 <p align="center">
@@ -16,12 +14,13 @@
 
 ## 🎮 O Jogo
 
-É um pequeno jogo de batalhas por turnos escrito unicamente com ReactJS.
+É um pequeno jogo de batalhas por turnos escrito em ReactJS. Criado para colocar em prática o conhecimento obtido com a biblioteca até o momento através de um projeto pessoal.
 
 Possui:
 
-- Modo Batalha;
-- Modo História (com três finais possíveis: ruim, bom e secreto).
+- Modo História (com três finais possíveis: ruim, bom e secreto);
+- Modo Treino;
+- Ranking mostrando a pontuação obtida no modo história.
 
 Para conhecer e jogar, acesse: https://react-battle-rpg.web.app/.
 
@@ -33,13 +32,14 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 
 - [React](https://reactjs.org)
 - [TypeScript](https://www.typescriptlang.org/)
-- [Material-UI](https://material-ui.com/)
 - [Firebase](https://firebase.google.com/)
+- [Material-UI](https://material-ui.com/)
+- [Material-UI Icons](https://material-ui.com/pt/components/icons/)
 - [Mui-Datatable](https://github.com/gregnb/mui-datatables)
 
-## 🚀 Começando
+## 🚀 Iniciando localmente em seu PC
 
-O projeto utiliza autenticação do google e banco de dados pelo firebase. Você deve configurar o firebase para usar todos os recursos do projeto ou utilize a [versão 1.2.0 beta](https://github.com/gonribeiro/React-Battle-Rpg/releases/tag/v1.2.0-beta). Esta versão não possui esses recursos implementados e você poderá executá-lo mais facilmente.
+O projeto utiliza autenticação do google e banco de dados pelo firebase, ambos para armazenar a pontuação dos jogadores do modo história e exibi-la em um [ranking](https://react-battle-rpg.web.app/ranking). Você deve configurar o firebase para usar todos os recursos atuais do projeto ou utilizar a [versão 1.2.0 beta](https://github.com/gonribeiro/React-Battle-Rpg/releases/tag/v1.2.0-beta) (Esta versão pode ser executada seguindo apenas os passos abaixo).
 
 Clone o projeto e acesse a pasta.
 
@@ -60,14 +60,6 @@ O aplicativo estará disponível para acesso em seu navegador em http://localhos
 ## 📝 Licença
 
 Este projeto está licenciado sob a Licença MIT. Veja o arquivo de [LICENÇA](LICENSE.md) para detalhes
-
-## 🎲 Pacotes utilizados
-
-- react-router-dom @types/react-router-dom
-- @material-ui/core @material-ui/icons @types/material-ui
-- ~~js-cookie @types/js-cookie -D~~
-- firebase
-- mui-datatables @types/mui-datatables
 
 ---
 <p align="center">História e Jogo criado por 💜 Tiago Ribeiro</p>

@@ -33,16 +33,12 @@ export default function Story() {
                 }}
             >
                 { storyStorage[storyValue.storyNumber]['textImg'] ? (
-                    <div>
-                        <Grid item xs={12}>
-                            <CardMedia
-                                component="img"
-                                height="140"
-                                image={storyStorage[storyValue.storyNumber]['textImg']}
-                            />
-                        </Grid>
-                    </div>
-                ) : (<div></div>)}
+                    <CardMedia
+                        component="img"
+                        height="140"
+                        image={storyStorage[storyValue.storyNumber]['textImg']}
+                    />
+                ) : (<></>)}
                 <Grid item xs={12}>
                     <Paper className="paper">
                         <Typography
