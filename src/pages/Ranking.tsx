@@ -9,14 +9,16 @@ import BackUrl from '../utils/BackUrl';
 type FirebaseRanking = Record<string, {
   name: string,
   avatar: string,
-  score: string
+  score: string,
+  monster: string
 }>
 
 type RankingType = {
   id: string,
   name: string,
   avatar: string,
-  score: string
+  score: string,
+  monster: string
 }
 
 export default function Mui() {
@@ -30,12 +32,16 @@ export default function Mui() {
       const firebaseRanking: FirebaseRanking = databaseRanking ?? {};
 
       const parsedRanking = Object.entries(firebaseRanking).map(([key, value]) => {
-          return {
-              id: key,
-              name: value.name,
-              avatar: value.avatar,
-              score: value.score,
-          }
+        // versão anterior não tinha opção de escolha de monstro, padrão: squirtle
+        let monster = value.monster === undefined ? "img/monsters/squirtle.jpg" : value.monster;
+
+        return {
+            id: key,
+            name: value.name,
+            avatar: value.avatar,
+            monster: monster,
+            score: value.score,
+        }
       });
 
       setRanking(parsedRanking.sort((a, b) => parseFloat(b.score) - parseFloat(a.score))); // ordenando
@@ -73,6 +79,22 @@ export default function Mui() {
             <Avatar
                 alt={'Avatar de: ' + ranking[rowIndex].name}
                 src={ranking[rowIndex].avatar}
+            ></Avatar>
+          );
+        }
+      }
+    },
+    {
+      name: "",
+      label: "",
+      options: {
+        filter: false,
+        sort: false,
+        customBodyRenderLite: (rowIndex, dataIndex) => {
+          return (
+            <Avatar
+                alt={'Personagem'}
+                src={ranking[rowIndex].monster}
             ></Avatar>
           );
         }

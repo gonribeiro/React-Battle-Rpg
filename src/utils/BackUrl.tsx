@@ -8,7 +8,7 @@ export default function Back() {
         <div className="fab" style={{margin: "10px"}}>
             <Link to="/">
                 <Fab>
-                    <ArrowBackIcon />  
+                    <ArrowBackIcon />
                 </Fab>
             </Link>
         </div>

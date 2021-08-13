@@ -1,9 +1,12 @@
 import { useHistory, useLocation } from "react-router-dom";
+
 import { useMatch } from "../hooks/useMatch";
 
-import { Grid, Typography, Fab, Paper } from '@material-ui/core';
+import { Grid, Typography, Fab, Paper, CardActions } from '@material-ui/core';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import OfflineBoltOutlinedIcon from '@material-ui/icons/OfflineBoltOutlined';
 
-import Fighter from "../components/Fighter";
+import Monster from "../components/Monster";
 import BackUrl from '../utils/BackUrl';
 
 export default function Match() {
@@ -11,7 +14,7 @@ export default function Match() {
     const locationUrl = useLocation();
     const {
         fighting,
-        useItem,
+        item,
         continueGame,
         match,
         battleSituation,
@@ -43,14 +46,41 @@ export default function Match() {
                 }}
             >
                 <Grid item xs={12} sm={3}>
-                    <Fighter
-                        monster={yourMonster}
-                        match={match}
-                        commandFighter={true}
-                        opponentMonsterLife={opponentMonster.life}
-                        fight={fighting}
-                        useItem={useItem}
-                    />
+                    <Monster monster={yourMonster} />
+                    {opponentMonster.life > 0 && yourMonster.life > 0 &&
+                        <CardActions>
+                            <Fab
+                                size="small"
+                                color="primary"
+                                variant="extended"
+                                onClick={fighting}
+                                style={{
+                                    marginRight: "15px"
+                                }}
+                            >
+                                {match.turn ? 'Ataque!' : 'Defenda!'}
+                            </Fab>
+                            <Fab
+                                size="small"
+                                color="primary"
+                                variant="extended"
+                                onClick={() => item('remedy')}
+                                style={{
+                                    marginRight: "15px"
+                                }}
+                            >
+                                {match.remedy} <FavoriteBorderIcon fontSize="small"/>
+                            </Fab>
+                            <Fab
+                                size="small"
+                                color="primary"
+                                variant="extended"
+                                onClick={() => item('maximumPower')}
+                            >
+                                {match.maximumPower} <OfflineBoltOutlinedIcon fontSize="small"/>
+                            </Fab>
+                        </CardActions>
+                    }
                 </Grid>
                 <Grid item xs={12} sm={3}>
                     <Paper style={{padding: '10px'}}>
@@ -73,7 +103,7 @@ export default function Match() {
                         }
                         { //@todo melhorar
                             ((opponentMonster.life <= 0 || yourMonster.life <= 0) && locationUrl.pathname === '/story-battle')
-                            || (opponentMonster.life <= 0 && opponentMonster.id !== 'boss1')
+                            || (opponentMonster.life <= 0 && opponentMonster.id !== '5')
                         ?
                             <Typography variant="body2" align="center">
                                 <br />
@@ -89,14 +119,13 @@ export default function Match() {
                             </Typography>
                         : <></>}
                         <Typography variant="body2" align="center">
-                            {battleStatus}
+                            {battleStatus} <br />
+                            (Partida {opponentMonster.id} de 5)
                         </Typography>
                     </Paper>
                 </Grid>
                 <Grid item xs={12} sm={3}>
-                    <Fighter
-                        monster={opponentMonster}
-                    />
+                    <Monster monster={opponentMonster} />
                 </Grid>
             </Grid>
             <BackUrl />

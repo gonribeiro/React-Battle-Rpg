@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { useSaveStory } from '../hooks/useSaveStory';
 import { useMatch } from '../hooks/useMatch';
+import Cookies from 'js-cookie';
 
 import { Paper, Grid, Button, CardHeader, Avatar, Divider } from '@material-ui/core';
 
@@ -11,6 +12,7 @@ export default function Landing() {
     const { user } = useAuth();
     const { storyValue } = useSaveStory();
     const { gameMode } = useMatch();
+    const newGame = Cookies.get('dontAskAgain') === 'true' ? 'new-game' : 'select-monster' ;
 
     return (
         <div
@@ -64,9 +66,9 @@ export default function Landing() {
                         <Button
                             size="large"
                             color="primary"
-                            onClick={() => gameMode('new-game')}
+                            onClick={() => gameMode(newGame)}
                         >
-                            Modo História {!user ? '(Login)' : ''}
+                            Iniciar História {!user ? '(Login)' : ''}
                         </Button>
                     </Grid>
                     <Grid container spacing={2} justifyContent="center">
@@ -95,6 +97,16 @@ export default function Landing() {
                         >
                             Treinar
                         </Button>
+                    </Grid>
+                    <Grid container spacing={2} justifyContent="center">
+                        <Link to="/options">
+                            <Button
+                                size="large"
+                                color="primary"
+                            >
+                                Opções
+                            </Button>
+                        </Link>
                     </Grid>
                     <Grid container spacing={2} justifyContent="center">
                         <Link to="/howto">

@@ -7,6 +7,7 @@ import Match from './pages/Match';
 import HowTo from './pages/HowTo';
 import Story from './pages/Story';
 import Ranking from './pages/Ranking';
+import SelectMonster from './pages/SelectMonster';
 
 function Routes() {
     return (
@@ -20,6 +21,8 @@ function Routes() {
                         <Route path="/story-mode" exact component={Story} />
                         <Route path="/story-battle" exact component={Match} />
                         <Route path="/ranking" exact component={Ranking} />
+                        <Route path="/options" exact component={SelectMonster} />
+                        <Route path="/select-monster" exact component={SelectMonster} />
                     </Switch>
                 </SaveStoryContextProvider>
             </AuthContextProvider>

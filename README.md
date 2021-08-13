@@ -36,10 +36,11 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 - [Material-UI](https://material-ui.com/)
 - [Material-UI Icons](https://material-ui.com/pt/components/icons/)
 - [Mui-Datatable](https://github.com/gregnb/mui-datatables)
+- [Js-Cookie](https://github.com/js-cookie/js-cookie)
 
 ## 🚀 Iniciando localmente em seu PC
 
-O projeto utiliza autenticação do google e banco de dados pelo firebase, ambos para armazenar a pontuação dos jogadores do modo história e exibi-la em um [ranking](https://react-battle-rpg.web.app/ranking). Você deve configurar o firebase para usar todos os recursos atuais do projeto ou utilizar a [versão 1.2.0 beta](https://github.com/gonribeiro/React-Battle-Rpg/releases/tag/v1.2.0-beta) (Esta versão pode ser executada seguindo apenas os passos abaixo).
+O projeto utiliza autenticação do google e banco de dados pelo firebase, ambos para armazenar a pontuação dos jogadores do modo história e exibi-la em um [ranking](https://react-battle-rpg.web.app/ranking). Você deve configurar o firebase para usar todos os recursos atuais do projeto ou utilizar a [versão 1.2.0 beta](https://github.com/gonribeiro/React-Battle-Rpg/releases/tag/v1.2.0-beta) (Esta antiga versão pode ser executada seguindo apenas os passos abaixo).
 
 Clone o projeto e acesse a pasta.
 

@@ -67,6 +67,7 @@ export function useStory() {
             name: user?.name,
             avatar: user?.avatar,
             score: storyValue.score,
+            monster: storyValue.monsterImage,
             date: Date()
         });
 

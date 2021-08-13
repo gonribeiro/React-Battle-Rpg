@@ -4,6 +4,7 @@ type StoryType = {
     remedy: number;
     maximumPower: number;
     yourMonsterNumber: number;
+    monsterImage: string;
     opponentMonsterNumber: number;
     storyNumber: number;
     inGame: boolean;
@@ -26,6 +27,7 @@ export function SaveStoryContextProvider(props: StoryContextProviderProps) {
         remedy: 2,
         maximumPower: 2,
         yourMonsterNumber: 0,
+        monsterImage: '',
         opponentMonsterNumber: 0,
         storyNumber: 0,
         inGame: false,
@@ -37,6 +39,7 @@ export function SaveStoryContextProvider(props: StoryContextProviderProps) {
             remedy: value.remedy,
             maximumPower: value.maximumPower,
             yourMonsterNumber: value.yourMonsterNumber,
+            monsterImage: value.monsterImage,
             opponentMonsterNumber: value.opponentMonsterNumber,
             storyNumber: value.storyNumber,
             inGame: value.inGame,
