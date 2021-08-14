@@ -10,15 +10,15 @@ export const yourMonsterStorage = [
         id: '2',
         name: "Charmander",
         monsterImg: "img/monsters/charmander.jpg",
-        attack: 4,
+        attack: 6,
         defense: 2,
-        life: 5
+        life: 4
     },{
         id: '3',
         name: "Bulbasaur",
         monsterImg: "img/monsters/bulbasaur.jpg",
         attack: 2,
-        defense: 4,
+        defense: 3,
         life: 7
     },{
         id: '4',

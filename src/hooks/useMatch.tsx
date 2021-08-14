@@ -102,8 +102,9 @@ export function useMatch() {
         let defender = match.turn ? opponentMonster : yourMonster;
 
         // Bônus somado ao ataque e defesa
-        let attackChance = Math.floor(Math.random() * 6) + 4;
-        let defenseChance = Math.floor(Math.random() * 6) + 4;
+        let attackChance = Math.floor(Math.random() * 6) + 1;
+        let defenseChance = Math.floor(Math.random() * 6) + 1;
+
         let battleResult = (attacker.attack + attackChance) - (defender.defense + defenseChance);
 
         if (battleResult > 0) {
