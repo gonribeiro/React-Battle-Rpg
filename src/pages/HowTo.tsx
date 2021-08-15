@@ -132,7 +132,8 @@ export default function HowTo() {
                                 Cada vitória lhe concede 100 pontos. <br />
                                 + 100 pontos por cada item (remédio ou poder máximo) que estiver no seu estoque no final de cada confronto. <br />
                                 + 10 pontos por cada ponto de vida que o seu personagem tiver no final de cada confronto. <br />
-                                Alcançando o final secreto, você receberá +1000 (mil) pontos de bônus.
+                                + 250 pontos no final do confronto caso o seu personagem esteja com a mesma quantidade de vida quando iniciou a batalha. <br />
+                                Alcançando o final secreto, você receberá + 1000 (mil) pontos de bônus.
                             </Typography>
                         </AccordionDetails>
                     </Accordion>

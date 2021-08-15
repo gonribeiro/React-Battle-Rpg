@@ -34,7 +34,6 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 - [TypeScript](https://www.typescriptlang.org/)
 - [Firebase](https://firebase.google.com/)
 - [Material-UI](https://material-ui.com/)
-- [Material-UI Icons](https://material-ui.com/pt/components/icons/)
 - [Mui-Datatable](https://github.com/gregnb/mui-datatables)
 - [Js-Cookie](https://github.com/js-cookie/js-cookie)
 

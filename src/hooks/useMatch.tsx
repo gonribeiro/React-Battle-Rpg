@@ -134,7 +134,7 @@ export function useMatch() {
 
             setMatch({...match, remedy: match.remedy - 1, turn: false});
             setYourMonster({...yourMonster, 
-                life: Number(yourMonster.id) - 1 === selectedMonster ? yourMonsterStorage[selectedMonster].life : 12
+                life: yourMonsterStorage[selectedMonster].life
             });
             setBattleSituation(yourMonster.name + ' restaurou a vida!');
         } else if (item === 'maximumPower' && match.maximumPower > 0){
@@ -154,7 +154,7 @@ export function useMatch() {
         // Modo história
         // @todo useMatch não deveria atualizar informações do modo história
         if (locationUrl.pathname === '/story-battle') {
-            let score = storyValue.score + 100 + (storyValue.remedy * 100) + (storyValue.maximumPower * 100) + (yourMonster.life * 10);
+            let score = storyValue.score + 100 + (storyValue.remedy * 100) + (storyValue.maximumPower * 100) + (yourMonster.life * 10) + (yourMonsterStorage[selectedMonster].life === yourMonster.life ? 250 : 0);
 
             if (opponentMonster.life <= 0 && opponentMonster.id !== '5') { // Próxima história
                 updateStoryValue({
