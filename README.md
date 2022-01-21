@@ -39,21 +39,15 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 
 ## 🚀 Iniciando localmente em seu PC
 
-O projeto utiliza autenticação do google e banco de dados pelo firebase, ambos para armazenar a pontuação dos jogadores do modo história e exibi-la em um [ranking](https://react-battle-rpg.web.app/ranking). Você deve configurar o firebase para usar todos os recursos atuais do projeto ou utilizar a [versão 1.2.0 beta](https://github.com/gonribeiro/React-Battle-Rpg/releases/tag/v1.2.0-beta) (Esta antiga versão pode ser executada seguindo apenas os passos abaixo).
+Até a versão [versão 1.2beta](https://github.com/gonribeiro/React-Battle-Rpg/releases/tag/v1.2.0-beta) você consegue iniciar o projeto sem nenhuma configuração extra. Basta apenas clonar o projeto, instalar as dependências, iniciá-lo e pronto.
 
-Clone o projeto e acesse a pasta.
+Para executar a última versão disponível, você precisará configurar o firebase. Acesse o site do [Firebase](https://firebase.google.com/), crie uma conta e um projeto. Ao chegar na etapa de "Adicionar o SDK do Firebase", copie todas as informações de "const firebaseConfig = { ... }". Faça uma cópia do arquivo ".env.local.example" alterando seu nome para ".env.local". Cole todas as informações contidas no "firebaseConfig" no arquivo "env.local"  de acordo com a informação solicitada. Instale o projeto, execute e pronto.
 
 ```bash
-$ git clone https://github.com/gonribeiro/React-Battle-Rpg
-$ cd React-Battle-Rpg
-```
-
-Siga os passos abaixo:
-```bash
-# Instale as dependências
-$ yarn
-# Inicie o projeto
-$ yarn start
+$ git clone https://github.com/gonribeiro/React-Battle-Rpg # clone o projeto
+$ cd React-Battle-Rpg # Acesse
+$ yarn # Instale as dependências
+$ yarn start # Inicie o projeto
 ```
 O aplicativo estará disponível para acesso em seu navegador em http://localhost:3000
 
