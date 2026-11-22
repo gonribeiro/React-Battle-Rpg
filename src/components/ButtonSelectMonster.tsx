@@ -9,7 +9,7 @@ const ButtonSelectMonster: React.FC<buttonProps> = (props) => {
     return (
         <CardActions>
             <Fab size="small" color={props.monsterNumber === props.selected ? 'primary' : 'inherit'} variant="extended">
-                {props.monsterNumber === props.selected ? 'Salvo!' : 'Escolho você!'}
+                {props.monsterNumber === props.selected ? 'Salvo!' : 'Vamos lá!'}
             </Fab>
         </CardActions>
     )

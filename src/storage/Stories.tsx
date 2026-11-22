@@ -3,10 +3,10 @@ const Story = [
         id: "part1",
         text: '"Há um ano."',
     },{
-        text: '"Devido a problemas na rede de saneamento básico a população recebe água com altos níveis de geosmina. Segundo as autoridades, não é nocivo a saúde."',
+        text: '"Devido a problemas na rede de saneamento básico a população recebe água com altos níveis de geosmina. Segundo as autoridades, não é nocivo à saúde."',
     },{
         textImg: 'img/story/doctor.jpg',
-        text: '"Entretanto, a três dias, médicos relatam receber pacientes graves, informando ter passado mal depois de beber a água mesmo filtrada."',
+        text: '"Entretanto, há três dias, médicos relatam receber pacientes graves, informando ter passado mal depois de beber a água mesmo filtrada."',
     },{
         text: '[Gravando pelo celular]',
     },{
@@ -16,7 +16,7 @@ const Story = [
         text: '"Minhas investigações sobre a água me trouxeram a uma fábrica abandonada no interior do estado."',
     },{
         textImg: 'img/story/sewer.jpg',
-        text: '"Passei o dia observando à distância, e mesmo abandonada, uma grande quantidade de um estranho líquido saía por canos da fábrica direto para o rio. E não parece ser simplesmente esgoto."',
+        text: '"Passei o dia observando à distância e, mesmo abandonada, uma grande quantidade de um estranho líquido saía por canos da fábrica direto para o rio. E não parece ser simplesmente esgoto."',
     },{
         text: '"Se alguém está causando tudo isso, eu vou descobrir. Aqui é a repórter Adriana do Jornal da Noite."',
     },{
@@ -37,7 +37,7 @@ const Story = [
         id: 'part3',
         text: '"Ok, ok... Temos que tomar mais cuidado. Dois ataques de surpresa, não quero um terceiro."'
     },{
-        text: '"Aquela outra espécie, também não é comum nessa região. Ambos estavam com um comportamento estranho. Se escondendo na escuridão, atacando de surpresa e muito agressivos."'
+        text: '"Aquela outra espécie também não é comum nessa região. Ambos estavam com um comportamento estranho. Se escondendo na escuridão, atacando de surpresa e muito agressivos."'
     },{
         textImg: 'img/story/stairs.jpg',
         text: '[Adriana avista uma escada que leva ao subsolo da fábrica. Ela desce silenciosamente temendo um novo ataque surpresa.]'
@@ -51,7 +51,7 @@ const Story = [
         callBattle: 3
     },{ 
         id: 'part4',
-        text: '"Vencemos, vencemos! Quatro vitória só hoje!"'
+        text: '"Vencemos, vencemos! Quatro vitórias só hoje!"'
     },{
         text: '[Porém...]'
     },{
@@ -99,7 +99,7 @@ const Story = [
         endingGame: true
     },{
         id: 'good-ending',
-        text: '"Vencemos! Estamos a salvos!"'
+        text: '"Vencemos! Estamos a salvo!"'
     },{
         text: '[Ambos os monstros, após o último ataque, interrompem a batalha.]'
     },{
@@ -125,15 +125,15 @@ const Story = [
     },{
         text: '[Adriana fica sozinha.]'
     },{
-        text: '"Afinal, o que era aquilo que nos atacou e por que todos naquela fábrica estavam com um comportamento muito agressivo?. ... ...Será que possui alguma relação com aquela água sendo jogada no rio e as doenças...?"'
+        text: '"Afinal, o que era aquilo que nos atacou e por que todos naquela fábrica estavam com um comportamento muito agressivo? ... ...Será que possui alguma relação com aquela água sendo jogada no rio e as doenças...?"'
     },{
         text: '[...]'
     },{
         text: '[Dias depois.]'
     },{
-        text: '"Você tem certeza que quer me acompanhar? ...Ha ha, tudo bem! ...Mas dessa vez teremos mais cuidados. Não quero te ver no hospital novamente."'
+        text: '"Você tem certeza que quer me acompanhar? ...Ha ha, tudo bem! ...Mas dessa vez teremos mais cuidado. Não quero te ver no hospital novamente."'
     },{
-        text: '"As autoridades ignoraram a nossa história e o jornal me proibiu de continuar com essa investigação temendo o nosso pior. Mas uma boa jornalista não corre da notícia."'
+        text: '"As autoridades ignoraram a nossa história e o jornal me proibiu de continuar com essa investigação temendo pela nossa segurança. Mas uma boa jornalista não corre da notícia."'
     },{
         text: '"Vamos! Dessa vez, nós iremos descobrir tudo o que está acontecendo."'
     },{
@@ -171,9 +171,9 @@ const Story = [
     },{
         text: '[Adriana deixa a fábrica.]'
     },{
-        text: '"Aquela água parou de jorrar. Não sei o que está acontecendo com este lugar, o porque daqueles monstros estarem tão agressivos. E ainda há aquele voador em uma forma jamais vista."'
+        text: '"Aquela água parou de jorrar. Não sei o que está acontecendo com este lugar, o porquê de aqueles monstros estarem tão agressivos. E ainda há aquele voador em uma forma jamais vista."'
     },{
-        text: '"Vamos meu amigo, nós temos uma grande matéria a investigar!"'
+        text: '"Vamos, meu amigo, nós temos uma grande matéria a investigar!"'
     },{
         text: '[[[ PARABÉNS! VOCÊ FINALIZOU O JOGO COM O FINAL SECRETO! Espero que tenha se divertido com essa mini aventura! Até mais! ]]]',
         endingGame: true

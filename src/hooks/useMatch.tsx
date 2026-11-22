@@ -144,7 +144,7 @@ export function useMatch() {
 
             setMatch({...match, maximumPower: match.maximumPower - 1, turn: false});
             setYourMonster({...yourMonster, attack: yourMonster.attack + 3});
-            setBattleSituation(yourMonster.name + ' ganhou + 3 de ataque!');
+            setBattleSituation(yourMonster.name + ' ganhou +3 de ataque!');
         } else {
             setBattleSituation('Você não possui mais esse item.');
         }

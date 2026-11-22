@@ -5,6 +5,7 @@ import MUIDataTable from "mui-datatables";
 import { Grid, Avatar } from '@material-ui/core';
 
 import BackUrl from '../utils/BackUrl';
+import { imagemDoMonstro } from '../storage/Monsters';
 
 type FirebaseRanking = Record<string, {
   name: string,
@@ -32,8 +33,8 @@ export default function Mui() {
       const firebaseRanking: FirebaseRanking = databaseRanking ?? {};
 
       const parsedRanking = Object.entries(firebaseRanking).map(([key, value]) => {
-        // versão anterior não tinha opção de escolha de monstro, padrão: squirtle
-        let monster = value.monster === undefined ? "img/monsters/squirtle.jpg" : value.monster;
+        // versão anterior não tinha opção de escolha de monstro (padrão: Marolinho); caminhos antigos são convertidos
+        let monster = imagemDoMonstro(value.monster);
 
         return {
             id: key,

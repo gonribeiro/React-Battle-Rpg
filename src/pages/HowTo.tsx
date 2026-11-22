@@ -50,8 +50,8 @@ export default function HowTo() {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography className={classes.text}>
-                                React Battle Rpg é um jogo de batalhas por turnos escrito em ReactJS. <br /><br />
-                                Possui um modo história e um modo batalha, ambos com um número limitado de batalhas. <br />
+                                React Battle RPG é um jogo de batalhas por turnos escrito em ReactJS. <br /><br />
+                                Possui um modo história e um modo treino, ambos com um número limitado de batalhas. <br />
                                 O modo história possui três finais possíveis (bom, ruim e secreto).
                             </Typography>
                         </AccordionDetails>
@@ -66,7 +66,7 @@ export default function HowTo() {
                             <Typography className={classes.text}>
                                 O jogo possui três caixas de exibição. <br />
                                 <li>A primeira exibe informações do seu personagem com botões de interação.</li>
-                                <li>A segunda exibe informações da batalha (Se houve ou não danos, quanto cada personagem 
+                                <li>A segunda exibe informações da batalha (se houve ou não danos, quanto cada personagem 
                                 utilizou de poder de ataque e defesa, se algum item foi utilizado e quem venceu).</li>
                                 <li>A terceira exibe informações do seu adversário.</li> <br />
                                 <Grid container spacing={2} justifyContent="center">
@@ -92,7 +92,7 @@ export default function HowTo() {
                                 <li>Seu personagem está atacando e possui 3 de poder de ataque. Neste turno sua sorte foi 5. Total: 8 de ataque.</li>
                                 <li>Seu oponente está defendendo e possui 3 de poder de defesa. Neste turno sua sorte foi 2. Total: 5 de defesa.</li>
                                 8 de ataque - 5 de defesa = 3 de dano. O defensor perde 3 de HP.
-                                Se o defensor tiver uma defesa igual ou maior ao ataque do oponente, então não haverá danos em seu HP. <br /><br />
+                                Se o defensor tiver uma defesa igual ou maior que o ataque do oponente, então não haverá danos em seu HP. <br /><br />
                                 <Grid container spacing={2} justifyContent="center">
                                     <img src="/img/howto/battle-status.jpg" alt="BattleStatus" /> 
                                 </Grid>
@@ -110,8 +110,8 @@ export default function HowTo() {
                         <AccordionDetails>
                             <Typography className={classes.text}>
                                 No início do jogo você possui quatro itens de dois tipos: <br />
-                                <li>Duas unidades de Cura (quando utilizado, seu personagem tem a vida restaurada).</li>
-                                <li>Duas unidades de Aumentar Ataque (quando utilizado, seu personagem recebe + 3 de ataque).</li> <br />
+                                <li>Duas unidades de Cura (quando utilizada, seu personagem tem a vida restaurada).</li>
+                                <li>Duas unidades de Aumentar Ataque (quando utilizada, seu personagem recebe +3 de ataque).</li> <br />
                                 <Grid container spacing={2} justifyContent="center">
                                     <img src="/img/howto/itens.jpg" alt="Itens"/> 
                                 </Grid>
